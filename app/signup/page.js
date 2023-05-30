@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 export default function page() {
   const {
     register,
@@ -13,10 +14,16 @@ export default function page() {
     formState: { errors },
   } = useForm();
 
+  const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      router.push("/");
+    }
+  }, []);
   // submit function
   const onSubmit = async (data) => {
     console.log(data);
-    let res = await fetch("http://localhost:3000/api/signup", {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),

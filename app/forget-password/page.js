@@ -1,6 +1,12 @@
 import React from "react";
-
+import { useRouter } from "next/navigation";
 export default function page() {
+  const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      router.push("/");
+    }
+  }, []);
   return (
     <div className="py-6 bg-white sm:py-8 lg:py-12">
       <h1 className="pb-8 text-5xl text-center">Reset</h1>

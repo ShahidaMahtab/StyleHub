@@ -1,12 +1,14 @@
 "use client";
+import { useUser } from "@/components/UserContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 export default function page() {
   const router = useRouter();
+  const { updateUser } = useUser();
   const {
     register,
     watch,
@@ -14,9 +16,16 @@ export default function page() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      router.push("/");
+    }
+  }, []);
+  // submit form
   const onSubmit = async (data) => {
     console.log(data);
-    let res = await fetch("http://localhost:3000/api/login", {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -24,6 +33,7 @@ export default function page() {
     let response = await res.json();
     reset();
     if (response.success) {
+      localStorage.setItem("token", response.token);
       toast.success("You are successfully logged in", {
         position: "bottom-left",
         autoClose: 5000,
@@ -34,9 +44,10 @@ export default function page() {
         progress: undefined,
         theme: "light",
       });
+      updateUser(); // Trigger state update
       setTimeout(() => {
-        router.push("http://localhost:3000");
-      },1000);
+        router.push("/");
+      }, 1000);
     } else {
       toast.error(response.error, {
         position: "bottom-left",
@@ -50,6 +61,7 @@ export default function page() {
       });
     }
   };
+
   return (
     <div className="py-6 bg-white sm:py-8 lg:py-12">
       <ToastContainer
