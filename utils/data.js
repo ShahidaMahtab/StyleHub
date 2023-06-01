@@ -4,6 +4,7 @@ export default data = [
     price: "600",
     image: "https://i.postimg.cc/T2j9LhZ6/F-FOSFOFlow-Sable-Face-1-720x.webp",
     color: ["red", "black", "red"],
+    category: "pufffy-",
   },
   {
     title: "FOSFO FLOW- Women's Down Puffer Jacket - AK10055",
