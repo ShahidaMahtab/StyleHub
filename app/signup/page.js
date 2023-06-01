@@ -209,7 +209,7 @@ export default function page() {
               Create Account
             </button>
 
-            <Link href="forget-password" className="text-sm text-gray-500">
+            <Link href="forgot" className="text-sm text-gray-500">
               Forget password
             </Link>
           </div>

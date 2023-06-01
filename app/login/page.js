@@ -24,7 +24,6 @@ export default function page() {
   }, []);
   // submit form
   const onSubmit = async (data) => {
-    console.log(data);
     let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -130,7 +129,7 @@ export default function page() {
               Login
             </button>
 
-            <Link href="forget-password" className="text-sm text-gray-500">
+            <Link href="forgot" className="text-sm text-gray-500">
               Forget password
             </Link>
           </div>
