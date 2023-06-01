@@ -8,8 +8,8 @@ import Link from 'next/link';
 import { useUser } from '../UserContext';
 
 const Navbar = () => {
-  const { user, logout } = useUser();
-  const [open, setOpen] = useState(false);
+	const { user, logout } = useUser();
+	const [open, setOpen] = useState(false);
 
 	const [cartOpen, setCartOpen] = useState(false);
 	const [activeOption, setActiveOption] = useState(null);
@@ -112,19 +112,22 @@ const Navbar = () => {
 		if (dropdownOpen) {
 			return (
 				<div className='absolute right-12 mt-2 w-36 bg-white border border-gray-200 rounded shadow-md'>
-				
-				{	!user?.value &&<Link
-						href='/signin'
-						className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
-					>
-						<button onClick={handleLinkClick}>SignIn</button>
-					</Link>}
-				{user?.value &&	<Link
-						href='/logout'
-						className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
-					>
-						<button onClick={handleLinkClick}>logout</button>
-					</Link>}
+					{!user?.value && (
+						<Link
+							href='/signup'
+							className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+						>
+							<button onClick={handleLinkClick}>SignUp</button>
+						</Link>
+					)}
+					{user?.value && (
+						<Link
+							href='/logout'
+							className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+						>
+							<button onClick={handleLinkClick}>logout</button>
+						</Link>
+					)}
 				</div>
 			);
 		}
@@ -182,7 +185,7 @@ const Navbar = () => {
 				</div>
 				<div className='flex items-center space-x-4 pr-4'>
 					<div>English</div>
-					<div>
+					<div className='z-10'>
 						<button onClick={toggleDropdown}>
 							<SlUser />
 						</button>
