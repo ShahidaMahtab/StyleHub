@@ -68,8 +68,8 @@ const Navbar = () => {
 	const renderCartDrawer = () => {
 		if (cartOpen) {
 			return (
-				<div className='fixed inset-0 flex justify-end bg-black bg-opacity-50'>
-					<div className='w-64 bg-white h-screen'>
+				<div className='fixed inset-0 flex justify-end bg-black bg-opacity-25'>
+					<div className='w-1/3 bg-white h-screen'>
 						<div className='flex justify-end p-2'>
 							<button onClick={toggleCartDrawer}>
 								<AiOutlineClose size={30} />
@@ -186,9 +186,11 @@ const Navbar = () => {
 				<div className='flex items-center space-x-4 pr-4'>
 					<div>English</div>
 					<div className='z-10'>
-						<button onClick={toggleDropdown}>
-							<SlUser />
-						</button>
+						{!cartOpen && (
+							<button onClick={toggleDropdown}>
+								<SlUser />
+							</button>
+						)}
 						{renderDropdownContent()}
 					</div>
 				</div>

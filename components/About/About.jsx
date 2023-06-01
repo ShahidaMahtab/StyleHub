@@ -59,7 +59,7 @@ const About = () => {
 				</div>
 				{/* content */}
 				<div className=''>
-					<div className='rounded-md shadow border-[0.5px] backdrop-filter backdrop-blur-md'>
+					<div className='rounded-md shadow border-[0.5px]'>
 						<div className=' grid grid-cols-2 py-4 px-8'>
 							<div>
 								<h3 className='text-4xl font-bold tracking-wider'>
