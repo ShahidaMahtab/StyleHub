@@ -5,7 +5,7 @@ import { SlUser } from "react-icons/sl";
 import { FiShoppingCart } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import Link from "next/link";
-import { useUser } from "../UserContext";
+import { useUser } from "../Context/UserContext";
 
 const Navbar = () => {
   const { user, logout } = useUser();
@@ -120,14 +120,7 @@ const Navbar = () => {
               <button onClick={handleLinkClick}>SignUp</button>
             </Link>
           )}
-          {user?.value && (
-            <Link
-              href="/logout"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-              <button onClick={handleLinkClick}>logout</button>
-            </Link>
-          )}
+          {user?.value && <button onClick={logout}>logout</button>}
         </div>
       );
     }

@@ -1,4 +1,4 @@
-export default data = [
+export const data = [
   {
     title: "FOSFO FLOW- Women's Down Puffer Jacket - AK10055",
     price: "600",

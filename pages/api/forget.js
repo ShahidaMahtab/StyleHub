@@ -1,5 +1,4 @@
 import nodemailer from "nodemailer";
-import bcrypt from "bcrypt";
 import Forgot from "@/models/Forgot";
 import User from "@/models/User";
 var CryptoJS = require("crypto-js");

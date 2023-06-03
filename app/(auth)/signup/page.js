@@ -15,6 +15,7 @@ export default function page() {
   } = useForm();
 
   const router = useRouter();
+  //when user logged in can't visit this page
   useEffect(() => {
     if (localStorage.getItem("token")) {
       router.push("/");
