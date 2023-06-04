@@ -5,13 +5,15 @@ const Banner = () => {
 	return (
 		<section className=''>
 			<div className='relative'>
-				<Image
-					src='https://source.unsplash.com/7cERndkOyDw'
-					alt='Banner Image'
-					width={1690}
-					height={400}
-					className='center bg-no-repeat brightness-[40%] cover '
-				/>
+				<div className=''>
+					<Image
+						src='https://source.unsplash.com/7cERndkOyDw/1690x750'
+						alt='Banner Image'
+						width={1690}
+						height={100}
+						className='center bg-no-repeat brightness-[40%] cover'
+					/>
+				</div>
 				<div className='absolute inset-0 flex top-28 justify-start container mx-auto'>
 					<div className='space-y-4'>
 						<div className='font-semibold text-4xl text-white uppercase'>
