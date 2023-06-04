@@ -68,7 +68,7 @@ const Navbar = () => {
 	const renderCartDrawer = () => {
 		if (cartOpen) {
 			return (
-				<div className='fixed inset-0 flex justify-end bg-black bg-opacity-25'>
+				<div className='fixed inset-0 flex justify-end bg-black bg-opacity-25 z-50'>
 					<div className='w-1/3 bg-white h-screen'>
 						<div className='flex justify-end p-2'>
 							<button onClick={toggleCartDrawer}>
@@ -88,19 +88,19 @@ const Navbar = () => {
 		switch (activeOption) {
 			case 'women':
 				return (
-					<div className='content h-[90vh] min-h-full pt-4 bg-cyan-500 text-white'>
+					<div className='content h-[70vh]  pt-4 bg-cyan-500 text-white'>
 						Content list for Women
 					</div>
 				);
 			case 'man':
 				return (
-					<div className='content h-[90vh] min-h-full pt-4 bg-cyan-500 text-white'>
+					<div className='content h-[70vh]  pt-4 bg-cyan-500 text-white'>
 						Content list for Men
 					</div>
 				);
 			case 'babies':
 				return (
-					<div className='content h-[90vh] min-h-full pt-4 bg-cyan-500 text-white'>
+					<div className='content h-[70vh]  pt-4 bg-cyan-500 text-white'>
 						Content list for Babies
 					</div>
 				);
@@ -121,12 +121,25 @@ const Navbar = () => {
 						</Link>
 					)}
 					{user?.value && (
-						<Link
-							href='/logout'
-							className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
-						>
-							<button onClick={handleLinkClick}>logout</button>
-						</Link>
+						<>
+							<Link
+								href='/'
+								onClick={logout}
+								className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+							>
+								<button onClick={handleLinkClick}>
+									logout
+								</button>
+							</Link>
+							<Link
+								href='/dashboard'
+								className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+							>
+								<button onClick={handleLinkClick}>
+									Dashboard
+								</button>
+							</Link>
+						</>
 					)}
 				</div>
 			);
@@ -139,7 +152,11 @@ const Navbar = () => {
 			<div className='bg-black text-white text-center'>
 				<marquee>Free shipping & returns for Canada & USA.</marquee>
 			</div>
-			<section className='flex border-b-4 border-black h-[10vh]'>
+			<section
+				className={`flex border-b-4 border-black h-[10vh] ${
+					activeOption || open ? 'hover:bg-cyan-400' : ''
+				} `}
+			>
 				<div className='border-r-4 border-black'>
 					<div className='p-4'>
 						<button onClick={toggleDrawer}>
