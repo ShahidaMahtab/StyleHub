@@ -1,9 +1,6 @@
+"use client";
 import React from "react";
 
 export default function CategoryProduct() {
-  return (
-    <div>
-      <h1>category wise product</h1>
-    </div>
-  );
+  return <h1>ddd</h1>;
 }
