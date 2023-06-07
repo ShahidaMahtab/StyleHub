@@ -51,7 +51,6 @@ export default function Page() {
         console.log(resetEmail);
 
         const result = await response.json();
-
         if (response.ok) {
           toast.success(result.message);
           if (!token) {
