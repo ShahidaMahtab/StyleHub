@@ -1,13 +1,25 @@
-"use client";
-import Link from "next/link";
-import React from "react";
+async function getData(category) {
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_HOST}/api/collections/${category}`,
+		{
+			cache: 'no-store',
+		}
+	);
 
-export default function Category({ params }) {
-  console.log(params.category);
-  return (
-    <div>
-      <h1>category wise product luxury punjabi</h1>
-      <Link href={"/product-details/id"}>Punjabi</Link>
-    </div>
-  );
+	if (!res.ok) {
+		throw new Error('Failed to fetch data');
+	}
+
+	return res.json();
+}
+
+export default async function Category({ params }) {
+	const data = await getData(params.category);
+	console.log(data);
+
+	return (
+		<div>
+			<h1>category wise product luxury punjabi</h1>
+		</div>
+	);
 }

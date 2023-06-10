@@ -1,13 +1,15 @@
-import Banner from "@/components/Home/Banner";
-import StyleGuide from "./../components/Home/StyleGuide";
-import CategoryProduct from "./../components/Home/CategoryProduct";
+import Banner from '@/components/Home/Banner';
+import StyleGuide from './../components/Home/StyleGuide';
+import CategoryProduct from './../components/Home/CategoryProduct';
 
-export default function Home() {
-  return (
-    <>
-      <Banner />
-      <StyleGuide />
-      <CategoryProduct />
-    </>
-  );
-}
+const Home = () => {
+	return (
+		<div className='space-y-8 '>
+			<Banner />
+			<StyleGuide />
+			<CategoryProduct />
+		</div>
+	);
+};
+
+export default Home;
