@@ -1,8 +1,8 @@
-import React from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-export default function AllProducts({ product }) {
+export default function StyleGuide({ product }) {
   const { title, _id, image, price, color, size } = product || {};
   return (
     <div className="mt-4">

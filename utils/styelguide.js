@@ -7,6 +7,7 @@ export const data = [
     category: "jacket",
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide1",
   },
   {
     title: "FOSFO FLOW- Women's Down Puffer Jacket - AK10055",
@@ -17,6 +18,7 @@ export const data = [
     category: "jacket",
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide1",
   },
   {
     title: "FOSFO FLOW- Women's Down Puffer Jacket - AK10055",
@@ -26,6 +28,7 @@ export const data = [
     category: "jacket",
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide1",
   },
   {
     title: "FOSFO FLOW- Women's Down Puffer Jacket - AK10055",
@@ -35,6 +38,7 @@ export const data = [
     category: "jacket",
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide1",
   },
   {
     title: "FOSFO SHORT- Women's Down Puffer Jacket - AK10051",
@@ -45,6 +49,7 @@ export const data = [
     size: ["s", "m", "l", "xl"],
     category: "jacket",
     quantity: "14",
+    type: "styleguide1",
   },
   {
     title: "FOSFO SHORT- Women's Down Puffer Jacket - AK10051",
@@ -55,6 +60,7 @@ export const data = [
     size: ["s", "m", "l", "xl"],
     category: "jacket",
     quantity: "14",
+    type: "styleguide1",
   },
   {
     title: "FOSFO SHORT - Women's down puffer jacket - AK10051",
@@ -63,6 +69,7 @@ export const data = [
       "https://i.postimg.cc/KzWR47xN/FOSFO-COURT-BLEU-PALE-AUDVIK47382-720x.webp",
     category: "jacket",
     color: ["red", "black", "red"],
+    type: "styleguide1",
   },
   {
     title: "FOSFO SHORT - Women's down puffer jacket - AK10051",
@@ -73,16 +80,18 @@ export const data = [
     size: ["s", "m", "l", "xl"],
     category: "jacket",
     quantity: "14",
+    type: "styleguide1",
   },
   {
-    title: "FOSFO SHORT - Women's down puffer jacket - AK10051",
+    title:
+      "https://i.postimg.cc/G2vm3Wgc/032521-AUDVIK-ECOMM-FOSFO-COURT-ORANGE-1372-720x.webpRT",
     price: "350",
-    image:
-      "https://i.postimg.cc/G2vm3Wgc/032521-AUDVIK-ECOMM-FOSFO-COURT-ORANGE-1372-720x.webp",
+    image: "",
     category: "jacket",
     color: ["red", "black", "red"],
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide1",
   },
   {
     title: "FOSFO SHORT - Women's down puffer jacket - AK10051",
@@ -93,6 +102,7 @@ export const data = [
     color: ["red", "black", "red"],
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide1",
   },
   {
     title: "FOSFO SHORT - Women's down puffer jacket - AK10051",
@@ -102,6 +112,7 @@ export const data = [
     color: ["red", "black", "red"],
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide1",
   },
   {
     title: "FOSFO SHORT - Women's down puffer jacket - AK10051",
@@ -111,6 +122,7 @@ export const data = [
     category: "jacket",
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide1",
   },
   {
     title: "FOSFO LONG - Women's down puffer jacket - AK10050",
@@ -121,6 +133,7 @@ export const data = [
     size: ["s", "m", "l", "xl"],
     category: "punjabi",
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO LONG - Women's down puffer jacket - AK10050",
@@ -131,6 +144,7 @@ export const data = [
     category: "punjabi",
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO LONG - Women's down puffer jacket - AK10050",
@@ -141,6 +155,7 @@ export const data = [
     size: ["s", "m", "l", "xl"],
     category: "punjabi",
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO LONG - Women's down puffer jacket - AK10050",
@@ -151,6 +166,7 @@ export const data = [
     size: ["s", "m", "l", "xl"],
     category: "punjabi",
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO LONG - Women's down puffer jacket - AK10050",
@@ -161,6 +177,7 @@ export const data = [
     size: ["s", "m", "l", "xl"],
     category: "punjabi",
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO LONG - Women's down puffer jacket - AK10050",
@@ -171,6 +188,7 @@ export const data = [
     category: "punjabi",
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO MAXI - Women's down puffer jacket - AK10052",
@@ -180,6 +198,7 @@ export const data = [
     category: "punjabi",
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO MAXI - Women's down puffer jacket - AK10052",
@@ -190,6 +209,7 @@ export const data = [
     category: "punjabi",
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO MAXI - Women's down puffer jacket - AK10052",
@@ -200,6 +220,7 @@ export const data = [
     size: ["s", "m", "l", "xl"],
     category: "punjabi",
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO Women's Sleeveless Puffer Vest - AK10058",
@@ -210,6 +231,7 @@ export const data = [
     category: "punjabi",
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO Women's Sleeveless Puffer Vest - AK10058",
@@ -219,6 +241,7 @@ export const data = [
     color: ["red", "black", "red"],
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO Women's Sleeveless Puffer Vest - AK10058",
@@ -229,6 +252,7 @@ export const data = [
     category: "punjabi",
     size: ["s", "m", "l", "xl"],
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO PLUS SIZE- Women’s down puffer jacket - AK10050X",
@@ -239,6 +263,7 @@ export const data = [
     size: ["s", "m", "l", "xl"],
     category: "punjabi",
     quantity: "14",
+    type: "styleguide2",
   },
   {
     title: "FOSFO PLUS SIZE- Women’s down puffer jacket - AK10050X",
@@ -249,5 +274,6 @@ export const data = [
     size: ["s", "m", "l", "xl"],
     quantity: "14",
     category: "punjabi",
+    type: "styleguide2",
   },
 ];
