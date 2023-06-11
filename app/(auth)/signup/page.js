@@ -23,14 +23,12 @@ export default function page() {
 	}, []);
 	// submit function
 	const onSubmit = async (data) => {
-		console.log(data);
 		let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
 			method: 'POST',
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify(data),
 		});
 		let response = await res.json();
-		console.log(response);
 		reset();
 		toast.success('Your account has been created', {
 			position: 'bottom-left',

@@ -5,21 +5,38 @@ import Link from "next/link";
 import React from "react";
 import { BiHeart } from "react-icons/bi";
 
-async function getData(params) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST}/api/products/${params}`,
-    {
-      cache: "no-store",
-    }
-  );
+async function fetchData(url) {
+  const res = await fetch(url, {
+    cache: "no-store",
+  });
+
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error(`Failed to fetch data from ${url}`);
   }
+
   return res.json();
 }
+
+async function getData(params) {
+  const firstUrl = `${process.env.NEXT_PUBLIC_HOST}/api/products/${params}`;
+  const secondUrl = `${process.env.NEXT_PUBLIC_HOST}/api/styledetails/${params}`;
+
+  try {
+    const firstData = await fetchData(firstUrl);
+    if (firstData.product === null) {
+      const secondData = await fetchData(secondUrl);
+      return secondData;
+    }
+
+    return firstData;
+  } catch (error) {
+    console.log("Fetch failed. Error:", error);
+    throw error;
+  }
+}
+
 const page = async ({ params }) => {
   const data = await getData(params.id);
-  console.log(data);
   const { title, price, image, color, category, size, quantity } =
     data.product || {};
   return (
@@ -78,7 +95,7 @@ const page = async ({ params }) => {
                 {size?.map((s) => (
                   <button
                     type="button"
-                    className="uppercase flex items-center justify-center w-12 h-8 text-sm font-semibold text-center text-gray-800 transition duration-100 bg-white border rounded-md hover:bg-gray-100 active:bg-gray-200"
+                    className="flex items-center justify-center w-12 h-8 text-sm font-semibold text-center text-gray-800 uppercase transition duration-100 bg-white border rounded-md hover:bg-gray-100 active:bg-gray-200"
                   >
                     {s}
                   </button>
@@ -96,7 +113,7 @@ const page = async ({ params }) => {
 
             <div className="flex gap-2.5">
               {/* quantity */}
-              <div className="items-center flex-1  px-8 py-3 text-sm font-semibold text-center border-2 border-indigo-300 rounded-full outline-none ring-indigo-300 focus-visible:ring flex justify-center space-x-4 sm:flex-none md:text-base sm:text-center md:justify-center">
+              <div className="flex items-center justify-center flex-1 px-8 py-3 space-x-4 text-sm font-semibold text-center border-2 border-indigo-300 rounded-full outline-none ring-indigo-300 focus-visible:ring sm:flex-none md:text-base sm:text-center md:justify-center">
                 <button>-</button>
                 <input
                   type="text"

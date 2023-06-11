@@ -4,9 +4,9 @@ import { BiChevronsRight } from "react-icons/bi";
 import Image from "next/image";
 export default function StyleGuide() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
       <Link href="/styleguide1" className="hover:cursor-pointer">
-        <div className="flex flex-col items-center justify-center p-4 ">
+        <div className="flex flex-col items-center justify-center ">
           <Image
             width={500}
             height={500}
@@ -21,7 +21,7 @@ export default function StyleGuide() {
         </div>
       </Link>
       <Link href="/styleguide2" className="hover:cursor-pointer">
-        <div className="flex flex-col items-center justify-center p-4 ">
+        <div className="flex flex-col items-center justify-center">
           <Image
             width={500}
             height={500}
