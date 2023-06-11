@@ -8,7 +8,7 @@ import { FiChevronsRight } from 'react-icons/fi';
 
 import './CategoryProduct.css';
 async function getData() {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/products`, {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/products`, {
 		cache: 'no-store',
 	});
 
@@ -35,10 +35,12 @@ const CategoryProduct = async () => {
 		<section className=''>
 			<div className=' '>
 				<Slider {...settings}>
-					{products.map((product) => (
+					{products.slice(0, 8).map((product) => (
 						<Link
 							href={`/collections/${product.category}`}
 							key={product._id}
+							className='pb-10'
+							target='_blank'
 						>
 							<div className='space-y-4 pr-[1.5px]'>
 								<div className=''>
