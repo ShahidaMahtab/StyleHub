@@ -4,7 +4,7 @@ import CategoryProduct from './../components/Home/CategoryProduct';
 
 const Home = () => {
 	return (
-		<div className='space-y-8 '>
+		<div className='space-y-20 '>
 			<Banner />
 			<StyleGuide />
 			<CategoryProduct />

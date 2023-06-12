@@ -1,3 +1,5 @@
+import CategoryCollection from '@/components/CategoryCollection/CategoryCollection';
+
 async function getData(category) {
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_HOST}/api/collections/${category}`,
@@ -15,11 +17,14 @@ async function getData(category) {
 
 export default async function Category({ params }) {
 	const data = await getData(params.category);
-	console.log(data);
 
 	return (
-		<div>
-			<h1>category wise product luxury punjabi</h1>
+		<div className='container px-10 mx-auto mt-8'>
+			<div className='grid grid-cols-1 gap-5 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4'>
+				{data?.product.map((product) => (
+					<CategoryCollection key={product._id} product={product} />
+				))}
+			</div>
 		</div>
 	);
 }
