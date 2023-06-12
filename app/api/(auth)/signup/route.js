@@ -8,11 +8,15 @@ export async function POST(request) {
 		await connect();
 		const body = await request.json();
 		const { firstName, lastName, email, phone, cpassword } = body;
+		// first registered user is an admin
+		const isFirstAccount = (await User.countDocuments({})) === 0;
+		const role = isFirstAccount ? 'admin' : 'user';
 		let user = new User({
 			firstName,
 			lastName,
 			phone,
 			email,
+			role,
 			password: CryptoJS.AES.encrypt(
 				body.password,
 				'secret123'

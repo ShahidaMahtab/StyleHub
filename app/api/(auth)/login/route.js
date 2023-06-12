@@ -23,7 +23,10 @@ export async function POST(request) {
 					'jwtsecret',
 					{ expiresIn: '2d' }
 				);
-				return NextResponse.json({ success: true, token });
+				console.log(token);
+				const tokenUser = body.email;
+				console.log(tokenUser);
+				return NextResponse.json({ success: true, token, tokenUser });
 			} else {
 				return NextResponse.json({
 					success: 'false',

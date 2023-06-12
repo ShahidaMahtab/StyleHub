@@ -6,12 +6,12 @@ const CategoryCollection = ({ product }) => {
 	return (
 		<div className='mt-4'>
 			<Link href={`/product-details/${_id}`} target='_blank'>
-				<Image src={image} width={500} height={500} />
+				<Image src={image} width={500} height={500} alt={title} />
 				<small className='text-gray-700 text-bold'>{title}</small>
 				<br />
 				<small className='font-bold'>${price}</small>
 				<small className='block'>Cateogry:{category}</small>
-				<div class='flex justify-center items-center'>
+				<div className='flex justify-center items-center'>
 					{color.map((c) => (
 						<input
 							type='radio'
