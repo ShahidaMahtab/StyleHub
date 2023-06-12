@@ -33,9 +33,11 @@ const Navbar = () => {
   };
 
   const toggleCartDrawer = () => {
+    console.log("clicked");
+
     setCartOpen((prevCartOpen) => !prevCartOpen);
   };
-
+  console.log(cartOpen);
   const toggleDropdown = () => {
     setDropdownOpen((prevDropdownOpen) => !prevDropdownOpen);
   };

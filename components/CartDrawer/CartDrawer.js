@@ -1,7 +1,21 @@
 import Link from "next/link";
 import React from "react";
 
-export default function CartDrawer() {
+async function getData(email) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+const CartDrawer = async () => {
+  const email = "n@gmail.com";
+  const data = await getData(email);
+  console.log(data);
   return (
     <div className="container px-8 mx-auto">
       <h2 className="text-lg font-medium text-gray-900" id="slide-over-title">
@@ -56,4 +70,5 @@ export default function CartDrawer() {
       </div>
     </div>
   );
-}
+};
+export default CartDrawer;
