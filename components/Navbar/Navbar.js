@@ -7,13 +7,13 @@ import { AiOutlineClose } from 'react-icons/ai';
 import Link from 'next/link';
 import { useUser } from '../Context/UserContext';
 import CartDrawer from './../CartDrawer/CartDrawer';
-import { FaHourglassEnd } from 'react-icons/fa';
 
 const Navbar = () => {
 	const { user, logout } = useUser();
-	const [open, setOpen] = useState(FaHourglassEnd);
+	const [cartItems, setCartItems] = useState([]);
+	const [open, setOpen] = useState(false);
 
-	const [cartOpen, setCartOpen] = useState(true);
+	const [cartOpen, setCartOpen] = useState(false);
 	const [activeOption, setActiveOption] = useState(null);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -68,6 +68,15 @@ const Navbar = () => {
 	};
 
 	const renderCartDrawer = () => {
+		const email = 'n@gmail.com';
+		useEffect(() => {
+			fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`)
+				.then((res) => res.json())
+				.then((data) => {
+					console.log(data);
+					setCartItems(data.cartItems);
+				});
+		}, [cartItems]);
 		if (cartOpen) {
 			return (
 				<div className='fixed inset-0 z-50 flex justify-end bg-black bg-opacity-25'>
@@ -77,7 +86,98 @@ const Navbar = () => {
 								<AiOutlineClose size={30} />
 							</button>
 						</div>
-						<CartDrawer />
+						<div className='container px-8 mx-auto'>
+							<h2
+								className='text-lg font-medium text-gray-900'
+								id='slide-over-title'
+							>
+								Shopping Cart
+							</h2>
+							{cartItems?.map((item) => {
+								return (
+									<div className='' key={item._id}>
+										<div className='mt-8'>
+											<div className='flow-root'>
+												<ul
+													role='list'
+													className='-my-6 divide-y divide-gray-200'
+												>
+													<li className='flex py-6'>
+														<div className='flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md'>
+															<img
+																src={item.image}
+																alt={item.title}
+																className='object-cover object-center w-full h-full'
+															/>
+														</div>
+
+														<div className='flex flex-col flex-1 ml-4'>
+															<div>
+																<div className='flex justify-between text-base font-medium text-gray-900'>
+																	<h3>
+																		<a href='#'>
+																			{
+																				item.title
+																			}
+																		</a>
+																	</h3>
+																	<p className='ml-4'>
+																		$
+																		{
+																			item.price
+																		}
+																	</p>
+																</div>
+																<p className='mt-1 text-sm text-gray-500'>
+																	{
+																		item.category
+																	}
+																</p>
+															</div>
+															<div className='flex items-end justify-between flex-1 text-sm'>
+																<p className='text-gray-500'>
+																	{item.price}
+																</p>
+
+																<div className='flex'>
+																	<button
+																		type='button'
+																		className='font-medium text-indigo-600 hover:text-indigo-500'
+																	>
+																		{
+																			item.quantity
+																		}
+																	</button>
+																</div>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								);
+							})}
+							{cartItems.length > 0 ? (
+								<div className='mt-6'>
+									<Link
+										href='/checkout'
+										className='flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700'
+									>
+										Checkout
+									</Link>
+								</div>
+							) : (
+								<div className='mt-6'>
+									<Link
+										href='/checkout'
+										className='flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700'
+									>
+										No Items available in the Cart
+									</Link>
+								</div>
+							)}
+						</div>
 					</div>
 				</div>
 			);

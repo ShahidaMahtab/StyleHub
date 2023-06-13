@@ -1,5 +1,6 @@
+'use client';
 import Link from 'next/link';
-
+/* 
 async function getData(email) {
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`,
@@ -13,11 +14,11 @@ async function getData(email) {
 	}
 
 	return res.json();
-}
+} */
 const CartDrawer = async () => {
 	const email = 'n@gmail.com';
-	const data = await getData(email);
-	console.log(data);
+	/* 	const data = await getData(email);
+	console.log(data); */
 	return (
 		<div className='container px-8 mx-auto'>
 			<h2
