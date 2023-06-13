@@ -34,7 +34,7 @@ export default function Details({ data }) {
       const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart`, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ _id }),
       });
       const response = await res.json();
       setIsInCart(response.isInCart);
@@ -60,8 +60,10 @@ export default function Details({ data }) {
       body: JSON.stringify(data),
     });
     let response = await res.json();
+    if (response.isInCart == false) {
+      setIsInCart(true);
+    }
     console.log(response);
-    setIsInCart(true);
   };
 
   // delete

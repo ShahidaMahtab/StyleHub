@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useUser } from "../Context/UserContext";
 import CartDrawer from "./../CartDrawer/CartDrawer";
 
-const Navbar = () => {
+const Navbar = async () => {
   const { user, logout } = useUser();
   const [open, setOpen] = useState(false);
 
@@ -33,11 +33,8 @@ const Navbar = () => {
   };
 
   const toggleCartDrawer = () => {
-    console.log("clicked");
-
     setCartOpen((prevCartOpen) => !prevCartOpen);
   };
-  console.log(cartOpen);
   const toggleDropdown = () => {
     setDropdownOpen((prevDropdownOpen) => !prevDropdownOpen);
   };
@@ -78,7 +75,9 @@ const Navbar = () => {
                 <AiOutlineClose size={30} />
               </button>
             </div>
-            <CartDrawer />
+            <h1>de</h1>
+            {/* <h2>Shopping cart</h2 */}
+            {/* <CartDrawer/> */}
           </div>
         </div>
       );

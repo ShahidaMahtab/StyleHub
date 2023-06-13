@@ -1,32 +1,34 @@
 import Link from "next/link";
 import React from "react";
 
-async function getData(email) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`, {
-    cache: "no-store",
-  });
+// async function getData(email) {
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`, {
+//     cache: "no-store",
+//   });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
+//   if (!res.ok) {
+//     throw new Error("Failed to fetch data");
+//   }
 
-  return res.json();
-}
+//   return res.json();
+// }
 const CartDrawer = async () => {
-  const email = "n@gmail.com";
-  const data = await getData(email);
-  console.log(data);
+  // const email = "n@gmail.com";
+  // const data = await getData(email);
+  // console.log(data.cartItems);
   return (
     <div className="container px-8 mx-auto">
       <h2 className="text-lg font-medium text-gray-900" id="slide-over-title">
         Shopping cart
       </h2>
-      <div className="mt-8">
+      {/* <div className="mt-8">
         <div className="flow-root">
           <ul role="list" className="-my-6 divide-y divide-gray-200">
             <li className="flex py-6">
               <div className="flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md">
-                <img
+                <Image
+                width={70}
+                height={70}
                   src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg"
                   alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
                   className="object-cover object-center w-full h-full"
@@ -37,7 +39,7 @@ const CartDrawer = async () => {
                 <div>
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <h3>
-                      <a href="#">Throwback Hip Bag</a>
+                     Throwback Hip Bag
                     </h3>
                     <p className="ml-4">$90.00</p>
                   </div>
@@ -67,7 +69,7 @@ const CartDrawer = async () => {
         >
           Checkout
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };

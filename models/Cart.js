@@ -21,6 +21,10 @@ const CartSchema = new mongoose.Schema(
       required: [true, "Please provide product name"],
       maxlength: [100, "Name can not be more than 100 characters"],
     },
+    // image: {
+    //   type: String,
+    //   default: "/uploads/example.jpeg",
+    // },
     price: {
       type: Number,
       required: [true, "Please provide product price"],

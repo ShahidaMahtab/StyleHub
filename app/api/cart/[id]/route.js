@@ -21,15 +21,14 @@ export const DELETE = async (request, { params }) => {
 
 export const GET = async (request, { params }) => {
   const { id } = params;
-  console.log(id);
   try {
-    await connect();
-    // Find cart items based on the id parameter
-    const cartItems = await Cart.find({ id });
-
-    return new NextResponse({ cartItems });
+      await connect();
+      // Find cart items based on the id parameter
+      const cartItems = await Cart.find({ email: id });
+      console.log(cartItems);
+      return NextResponse.json({ cartItems });
   } catch (err) {
-    console.error(err);
-    return new NextResponse("Internal Server Error", { status: 500 });
+      console.error(err);
+      return new NextResponse('Internal Server Error', { status: 500 });
   }
 };
