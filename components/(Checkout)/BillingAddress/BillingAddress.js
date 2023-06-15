@@ -1,11 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
+import countryList from "react-select-country-list";
+import Select from "react-select";
 export default function BillingAddress() {
   const [showAddressDiv, setShowAddressDiv] = useState(false);
+  const [value, setValue] = useState("");
+  const options = useMemo(() => countryList().getData(), []);
 
+  // country field value
+  const changeHandler = (value) => {
+    setValue(value);
+  };
   const handleCheckboxChange = (event) => {
     setShowAddressDiv(event.target.checked);
   };
@@ -16,13 +23,28 @@ export default function BillingAddress() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   // submit function
   const onSubmit = async (data) => {
     console.log(data);
   };
 
+  // Function to get form data without submitting
+  const getFormData = () => {
+    const data = {
+      ...watch(), // Get all form field values
+      country: value.label, // Include the selected country
+    };
+    console.log(data);
+  };
+  const registerField = (name) => {
+    return register(name, {
+      onChange: getFormData,
+    });
+  };
+
   return (
-    <div className="py-6 bg-white sm:py-8 lg:py-12 shadow-lg rounded-lg">
+    <div className="py-6 bg-white rounded-lg shadow-lg sm:py-8 lg:py-12">
       <ToastContainer
         position="bottom-left"
         autoClose={5000}
@@ -51,7 +73,7 @@ export default function BillingAddress() {
             </label>
             <input
               type="text"
-              {...register("line1", {
+              {...registerField("line1", {
                 required: true,
               })}
               name="line1"
@@ -68,7 +90,7 @@ export default function BillingAddress() {
             </label>
             <input
               type="text"
-              {...register("line2")}
+              {...registerField("line2")}
               name="line2"
               className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
             />
@@ -83,7 +105,7 @@ export default function BillingAddress() {
             </label>
             <input
               type="text"
-              {...register("phone", {
+              {...registerField("phone", {
                 required: true,
                 minLength: {
                   value: 5,
@@ -102,18 +124,17 @@ export default function BillingAddress() {
             >
               Country/Region*
             </label>
-            <select
+            <Select
               name="country"
               className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
-              {...register("country")}
-            >
-              <option value="jacket">Jacket</option>
-              <option value="punjabi">Punjabi</option>
-              <option value="other">other</option>
-            </select>
+              {...registerField("country")}
+              options={options}
+              value={value}
+              onChange={changeHandler}
+            />
           </div>
 
-          <div className="sm:col-span-2 w-full">
+          <div className="w-full sm:col-span-2">
             <div className="grid grid-cols-3 gap-4">
               <div>
                 <label
@@ -124,7 +145,7 @@ export default function BillingAddress() {
                 </label>
                 <input
                   type="text"
-                  {...register("city")}
+                  {...registerField("city")}
                   name="city"
                   className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
                 />
@@ -139,7 +160,7 @@ export default function BillingAddress() {
                 </label>
                 <input
                   type="text"
-                  {...register("state")}
+                  {...registerField("state")}
                   name="state"
                   className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
                 />
@@ -154,20 +175,20 @@ export default function BillingAddress() {
                 </label>
                 <input
                   type="text"
-                  {...register("postal")}
-                  name="input3"
+                  {...registerField("postal")}
+                  name="postal"
                   className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
                 />
               </div>
             </div>
             {/* checkbox */}
-            <div className="inline-flex items-center space-x-2 mt-3">
+            <div className="inline-flex items-center mt-3 space-x-2">
               <label className={`${showAddressDiv ? "text-blue-500" : ""}`}>
                 <input
                   type="checkbox"
                   checked={showAddressDiv}
                   onChange={handleCheckboxChange}
-                  className="form-checkbox text-blue-500"
+                  className="text-blue-500 form-checkbox"
                 />
               </label>
               <span>Ship to a Different Address?</span>
@@ -176,83 +197,98 @@ export default function BillingAddress() {
               <div className="mt-4">
                 <div className="sm:col-span-2">
                   <label
-                    htmlFor="line1"
+                    htmlFor="dline1"
                     className="inline-block mb-2 text-sm text-gray-800 sm:text-base"
                   >
                     Address line 1*
                   </label>
                   <input
                     type="text"
-                    {...register("line1", {
+                    {...registerField("dline1", {
                       required: true,
                     })}
-                    name="line1"
+                    name="dline1"
                     className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
                   />
                 </div>
 
-                <div className="sm:col-span-2 mt-3">
+                <div className="mt-3 sm:col-span-2">
                   <label
-                    htmlFor="line2"
+                    htmlFor="dline2"
                     className="inline-block mb-2 text-sm text-gray-800 sm:text-base"
                   >
                     Address line 2*
                   </label>
                   <input
                     type="text"
-                    {...register("line2")}
-                    name="line2"
+                    {...registerField("dline2")}
+                    name="dline2"
                     className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
                   />
                 </div>
                 <div className="grid grid-cols-3 gap-4 mt-3">
                   <div>
                     <label
-                      htmlFor="city"
+                      htmlFor="dcity"
                       className="inline-block mb-2 text-sm text-gray-800 sm:text-base"
                     >
                       City *
                     </label>
                     <input
                       type="text"
-                      {...register("city")}
-                      name="city"
+                      {...registerField("dcity")}
+                      name="dcity"
                       className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
                     />
                   </div>
 
                   <div>
                     <label
-                      htmlFor="state"
+                      htmlFor="dstate"
                       className="inline-block mb-2 text-sm text-gray-800 sm:text-base"
                     >
                       State *
                     </label>
                     <input
                       type="text"
-                      {...register("state")}
-                      name="state"
+                      {...registerField("dstate")}
+                      name="dstate"
                       className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
                     />
                   </div>
 
                   <div>
                     <label
-                      htmlFor="postal"
+                      htmlFor="dpostal"
                       className="inline-block mb-2 text-sm text-gray-800 sm:text-base"
                     >
                       Postal/ZIP Code*
                     </label>
                     <input
                       type="text"
-                      {...register("postal")}
-                      name="input3"
+                      {...registerField("dpostal")}
+                      name="dpostal"
                       className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
                     />
                   </div>
                 </div>
               </div>
             )}
+          </div>
+          <div className="flex justify-end mt-6">
+            <button
+              type="button"
+              onClick={getFormData}
+              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+            >
+              Get Form Data
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 ml-4 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </div>

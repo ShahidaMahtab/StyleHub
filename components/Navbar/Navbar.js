@@ -6,7 +6,6 @@ import { FiShoppingCart } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import Link from "next/link";
 import { useUser } from "../Context/UserContext";
-import CartDrawer from "./../CartDrawer/CartDrawer";
 
 const Navbar = () => {
   const { user, logout } = useUser();
@@ -73,7 +72,6 @@ const Navbar = () => {
       fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setCartItems(data.cartItems);
         });
     }, [cartItems]);
