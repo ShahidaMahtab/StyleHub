@@ -16,7 +16,7 @@ async function getData(email) {
 	return res.json();
 } */
 const CartDrawer = async () => {
-  const email = "n@gmail.com";
+  // const email = localStorage.getItem("email");
   /* 	const data = await getData(email);
 	console.log(data); */
   return (

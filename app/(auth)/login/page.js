@@ -34,6 +34,8 @@ export default function page() {
     if (response.success) {
       console.log(response);
       localStorage.setItem("token", response.token);
+      localStorage.setItem("email", response.tokenUser);
+      localStorage.setItem("name", response.name);
       toast.success("You are successfully logged in", {
         position: "bottom-left",
         autoClose: 5000,

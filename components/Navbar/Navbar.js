@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useUser } from "../Context/UserContext";
 
 const Navbar = () => {
-  const { user, logout } = useUser();
+  const { user, logout} = useUser();
   const [cartItems, setCartItems] = useState([]);
   const [open, setOpen] = useState(false);
 
@@ -67,9 +67,8 @@ const Navbar = () => {
   };
 
   const renderCartDrawer = () => {
-    const email = "n@gmail.com";
     useEffect(() => {
-      fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`)
+      fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
           setCartItems(data.cartItems);

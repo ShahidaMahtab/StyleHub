@@ -7,7 +7,9 @@ import AccordionDetails from "./Accordion/Accordion ";
 import ImagePreview from "./ImagePreview/ImagePreview";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useUser } from "../Context/UserContext";
 export default function Details({ data }) {
+  const { user } = useUser();
   const { _id, title, price, image, color, size, quantity } =
     data.product || {};
   const [quantityProduct, setQuantityProduct] = useState(0);
@@ -44,6 +46,7 @@ export default function Details({ data }) {
   }, []);
 
   const addCart = async () => {
+    const email = user?.email;
     const data = {
       _id,
       title,
@@ -52,7 +55,7 @@ export default function Details({ data }) {
       size: selectedSizes,
       color: selectedColor,
       quantity: quantityProduct,
-      email: "n@gmail.com",
+      email,
     };
     console.log(data);
     let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart`, {
