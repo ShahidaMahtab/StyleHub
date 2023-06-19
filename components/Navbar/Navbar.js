@@ -8,14 +8,14 @@ import Link from "next/link";
 import { useUser } from "../Context/UserContext";
 
 const Navbar = () => {
-  const { user, logout} = useUser();
+  const { user, logout } = useUser();
   const [cartItems, setCartItems] = useState([]);
   const [open, setOpen] = useState(false);
 
   const [cartOpen, setCartOpen] = useState(false);
   const [activeOption, setActiveOption] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const email = user?.email;
   useEffect(() => {
     const handleResize = () => {
       setOpen(false);
@@ -68,7 +68,7 @@ const Navbar = () => {
 
   const renderCartDrawer = () => {
     useEffect(() => {
-      fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${user?.email}`)
+      fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`)
         .then((res) => res.json())
         .then((data) => {
           setCartItems(data.cartItems);

@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { BiHeart } from "react-icons/bi";
 import AccordionDetails from "./Accordion/Accordion ";
 import ImagePreview from "./ImagePreview/ImagePreview";
@@ -16,7 +15,8 @@ export default function Details({ data }) {
   const [selectedSizes, setSelectedSizes] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [isInCart, setIsInCart] = useState(false);
-
+  const [isInWishlist, setIsInWishlist] = useState(false);
+  const email = user?.email;
   // increase button
   const handleIncrease = () => {
     if (quantityProduct < quantity) {
@@ -33,22 +33,44 @@ export default function Details({ data }) {
   // Check if the product is already in the cart when the component mounts
   useEffect(() => {
     const checkCartStatus = async () => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ _id }),
-      });
-      const response = await res.json();
-      setIsInCart(response.isInCart);
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ _id, email }),
+        });
+        const response = await res.json();
+        setIsInCart(response.isInCart);
+      } catch (error) {
+        console.log("Error occurred while checking cart status", error);
+      }
+    };
+
+    const checkWishlistStatus = async () => {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_HOST}/api/wishlist`,
+          {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ _id, email }),
+          }
+        );
+        const response = await res.json();
+        setIsInWishlist(response.isInWishlist);
+      } catch (error) {
+        console.log("Error occurred while checking wishlist status", error);
+      }
     };
 
     checkCartStatus();
-  }, []);
+    checkWishlistStatus();
+  }, [_id, email]);
 
+  // add to the cart
   const addCart = async () => {
-    const email = user?.email;
     const data = {
-      _id,
+      productId: _id,
       title,
       price,
       image,
@@ -70,14 +92,17 @@ export default function Details({ data }) {
     console.log(response);
   };
 
-  // delete
+  // delete from cart
   const removeFromCart = async () => {
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_HOST}/api/cart/${_id}`,
         {
           method: "DELETE",
-          headers: { "content-type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            email: email,
+          },
         }
       );
 
@@ -100,7 +125,64 @@ export default function Details({ data }) {
       console.log("Error occurred while removing product from cart", error);
     }
   };
+  //wishlist
+  const wishlist = async () => {
+    const data = {
+      productId: _id,
+      title,
+      price,
+      image,
+      email,
+    };
+    console.log(data);
+    console.log(data);
+    let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/wishlist`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    let response = await res.json();
+    if (response.isInWishlist == false) {
+      setIsInWishlist(true);
+    }
+    console.log(response);
+  };
 
+  // delete from cart
+  const removeFromWishlist = async () => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_HOST}/api/wishlist/${_id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            email: email,
+          },
+        }
+      );
+
+      if (res.ok) {
+        setIsInWishlist(false);
+        toast.success("Product removed successfully", {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        console.log("Failed to remove product from cart");
+      }
+    } catch (error) {
+      console.log("Error occurred while removing product from cart", error);
+    }
+  };
+
+  
   return (
     <div className="px-4 mx-auto md:px-8">
       <ToastContainer
@@ -221,15 +303,26 @@ export default function Details({ data }) {
                 Add to cart
               </button>
             )}
-
-            <Link
-              href="#"
-              className="inline-flex items-center justify-center p-3 text-sm font-semibold text-center text-gray-500 transition duration-100 bg-gray-200 rounded-full outline-none ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base"
-            >
-              <span className="rounded-full">
-                <BiHeart size={30} />
-              </span>
-            </Link>
+            {/* wishlist */}
+            {isInWishlist ? (
+              <button
+                onClick={removeFromWishlist}
+                className="inline-flex items-center justify-center p-3 text-sm font-semibold text-center transition duration-100 bg-indigo-500 rounded-full outline-none ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base text-white-500"
+              >
+                <span className="rounded-full">
+                  <BiHeart size={30} />
+                </span>
+              </button>
+            ) : (
+              <button
+                onClick={wishlist}
+                className="inline-flex items-center justify-center p-3 text-sm font-semibold text-center text-gray-500 transition duration-100 bg-gray-200 rounded-full outline-none ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base"
+              >
+                <span className="rounded-full">
+                  <BiHeart size={30} />
+                </span>
+              </button>
+            )}
           </div>
           {/* description */}
           <div className="mt-10 md:mt-16 lg:mt-20">

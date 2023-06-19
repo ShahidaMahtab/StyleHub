@@ -6,10 +6,10 @@ export async function POST(request) {
   try {
     await connect();
     const body = await request.json();
-    const { _id } = body;
+    const { productId, email } = body;
 
     // Check if the product already exists in the cart collection
-    const existingCart = await Cart.findOne({ _id });
+    const existingCart = await Cart.findOne({ productId, email });
 
     if (existingCart) {
       return NextResponse.json({ isInCart: true });

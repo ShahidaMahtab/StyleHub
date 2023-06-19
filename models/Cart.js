@@ -1,19 +1,6 @@
 const mongoose = require("mongoose");
 
 const CartSchema = new mongoose.Schema(
-  // {
-  //   user: {
-  //     type: mongoose.Types.ObjectId,
-  //     ref: "User",
-  //     required: true,
-  //   },
-  //   products: {
-  //     type: mongoose.Types.ObjectId,
-  //     ref: "Products",
-  //     required: true,
-  //   },
-  // },
-  // { timestamps: true }
   {
     title: {
       type: String,
@@ -37,7 +24,6 @@ const CartSchema = new mongoose.Schema(
     },
     size: {
       type: [String],
-
       required: true,
     },
     quantity: {
@@ -47,14 +33,12 @@ const CartSchema = new mongoose.Schema(
     },
     email: {
       type: String,
+    },
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Products",
       required: true,
     },
-
-    /* 	user: {
-			type: mongoose.Types.ObjectId,
-			ref: 'User',
-			required: true,
-		}, */
   },
   { timestamps: true }
 );
