@@ -1,46 +1,62 @@
-import Image from 'next/image';
-import React from 'react';
+"use client";
+import React, { useState, useRef } from "react";
+import { FaPlay, FaPause, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 
 const Banner = () => {
-	return (
-		<section className=''>
-			<div className='relative'>
-				<div className=''>
-					<Image
-						src='https://source.unsplash.com/7cERndkOyDw/1690x830'
-						alt='Banner Image'
-						width={1690}
-						height={830}
-						className='center bg-no-repeat brightness-[40%] cover'
-					/>
-				</div>
-				<div className='container absolute inset-0 flex justify-start p-4 mx-auto top-28'>
-					<div className='space-y-4'>
-						<div className='text-4xl font-semibold text-white uppercase'>
-							Fosfo puffer
-						</div>
-						<br />
-						<div className='font-bold text-white text-8xl'>
-							Eco-Friendly &
-						</div>
-						<br />
-						<div className='text-4xl font-semibold text-white '>
-							on trend.
-						</div>
-						{/* button */}
-						<div className='flex pt-4 space-x-4 font-semibold text-black'>
-							<button className='px-3 py-2 bg-white rounded-xl'>
-								Shop Men
-							</button>
-							<button className='px-3 py-2 bg-white rounded-xl'>
-								Shop Women
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+  const videoRef = useRef(null);
+
+  // video play function
+  const handleTogglePlay = () => {
+    if (isPlaying) {
+      videoRef.current.pause();
+    } else {
+      videoRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+   // sound play function
+  const handleToggleSound = () => {
+    if (isMuted) {
+      videoRef.current.muted = false;
+    } else {
+      videoRef.current.muted = true;
+    }
+    setIsMuted(!isMuted);
+  };
+
+  return (
+    <div className="relative">
+      <video ref={videoRef} autoPlay loop muted>
+        <source src="/videos/banner.mp4" type="video/mp4" />
+        {/* Your browser does not support the video tag. */}
+      </video>
+      <div className="absolute bottom-4 right-4">
+        <button
+          className="text-white bg-transparent focus:outline-none"
+          onClick={handleTogglePlay}
+        >
+          {isPlaying ? (
+            <FaPause className="w-6 h-6" />
+          ) : (
+            <FaPlay className="w-6 h-6" />
+          )}
+        </button>
+        <button
+          className="ml-4 text-white bg-transparent focus:outline-none"
+          onClick={handleToggleSound}
+        >
+          {isMuted ? (
+            <FaVolumeUp className="w-6 h-6" />
+          ) : (
+            <FaVolumeMute className="w-6 h-6" />
+          )}
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default Banner;

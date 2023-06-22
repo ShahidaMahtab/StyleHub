@@ -65,7 +65,7 @@ export default function page() {
   };
 
   return (
-    <div className="py-6 bg-white sm:py-8 lg:py-12">
+    <div className="py-6 mt-32 bg-white sm:py-8 lg:py-12">
       <ToastContainer
         position="bottom-left"
         autoClose={5000}
