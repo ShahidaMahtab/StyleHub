@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BiChevronsRight } from "react-icons/bi";
 import { useUser } from "../Context/UserContext";
 
@@ -18,16 +18,28 @@ import { useUser } from "../Context/UserContext";
 const Sidebar = async () => {
   const { user, logout } = useUser();
   const email = user.email;
+  const [isUser, setIsUser] = useState({});
   // const data = await getData(email);
-  // useEffect(() => {
-  //   fetch(`${process.env.NEXT_PUBLIC_HOST}/api/${email}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     });
-  // }, [email]);
-  console.log(email);
-  // console.log(data);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/user`, {
+          headers: {
+            email: email,
+          },
+        });
+        const data = await res.json();
+        setIsUser(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (email) {
+      fetchData();
+    }
+  }, [email]);
+
   const users = [
     {
       name: "Orders",
