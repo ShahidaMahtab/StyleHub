@@ -90,16 +90,17 @@ const items = [
 
 const NavigationContent = () => {
 	return (
-		<div className='container mx-auto'>
-			<div className='w-1/4 pt-4'>
-				<Collapse
-					defaultActiveKey={['1']}
-					ghost
-					items={items}
-					accordion
-					expandIconPosition='right'
-				/>
-			</div>
+		<div
+			className='w-full lg:w-full '
+			style={{ maxHeight: '70vh', overflowY: 'auto' }}
+		>
+			<Collapse
+				defaultActiveKey={['1']}
+				ghost
+				items={items}
+				accordion
+				expandIconPosition='end'
+			/>
 		</div>
 	);
 };

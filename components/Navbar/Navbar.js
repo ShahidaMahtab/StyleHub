@@ -7,7 +7,8 @@ import { AiOutlineClose } from 'react-icons/ai';
 import Link from 'next/link';
 import { useUser } from '../Context/UserContext';
 import NavigationContent from './NavigationContent';
-
+import { BiLogOut } from 'react-icons/bi';
+import { MdOutlineAccountCircle } from 'react-icons/md';
 const Navbar = () => {
 	const { user, logout } = useUser();
 	const [cartItems, setCartItems] = useState([]);
@@ -50,8 +51,46 @@ const Navbar = () => {
 		if (open) {
 			return (
 				<div className='fixed z-50 w-full h-[80vh] bg-white'>
-					<div className=''>
-						<NavigationContent />
+					<div className='lg:flex lg:space-x-4 pt-4 container mx-auto'>
+						<div>
+							<NavigationContent />
+						</div>
+						<div className='flex flex-col space-y-2 pl-2 pt-2  lg:pl-0'>
+							<Link href='/about-us'>
+								<h1 className='text-xl font-medium hover:underline'>
+									About Us
+								</h1>
+							</Link>
+							<Link href='/all-products'>
+								<h1 className='text-xl font-medium no-underline hover:underline'>
+									All Products
+								</h1>
+							</Link>
+							<div className='lg:hidden'>
+								{!user?.value ? (
+									<Link
+										href='/signup'
+										className='flex space-x-2 capitalize items-center text-xl font-medium'
+									>
+										<MdOutlineAccountCircle size={30} />
+										<button onClick={handleLinkClick}>
+											Account Info
+										</button>
+									</Link>
+								) : (
+									<Link
+										href='/'
+										onClick={logout}
+										className='flex space-x-2 capitalize items-center text-xl font-medium  '
+									>
+										<BiLogOut />
+										<button onClick={handleLinkClick}>
+											logout
+										</button>
+									</Link>
+								)}
+							</div>
+						</div>
 					</div>
 				</div>
 			);
@@ -71,7 +110,7 @@ const Navbar = () => {
 		if (cartOpen) {
 			return (
 				<div className='fixed inset-0 z-50 flex justify-end bg-black bg-opacity-25'>
-					<div className='w-1/3 h-screen bg-white'>
+					<div className='w-full lg:w-1/3 h-screen bg-white'>
 						<div className='flex justify-end p-2'>
 							<button onClick={toggleCartDrawer}>
 								<AiOutlineClose size={30} />
@@ -181,19 +220,19 @@ const Navbar = () => {
 		switch (activeOption) {
 			case 'women':
 				return (
-					<div className='content h-[70vh]  pt-4 bg-cyan-500 text-white'>
+					<div className='content h-[70vh]  pt-4 bg-white text-black'>
 						Content list for Women
 					</div>
 				);
 			case 'man':
 				return (
-					<div className='content h-[70vh]  pt-4 bg-cyan-500 text-white'>
+					<div className='content h-[70vh]  pt-4 bg-white text-black '>
 						Content list for Men
 					</div>
 				);
 			case 'babies':
 				return (
-					<div className='content h-[70vh]  pt-4 bg-cyan-500 text-white'>
+					<div className='content h-[70vh]  pt-4 bg-white text-black'>
 						Content list for Babies
 					</div>
 				);
@@ -245,12 +284,12 @@ const Navbar = () => {
 			<div className='text-center text-white bg-black'>
 				<marquee>Free shipping & returns for Canada & USA.</marquee>
 			</div>
-			<section
-				className={`flex border-b-4 border-black h-[10vh] ${
+			<div
+				className={`flex lg:grid lg:grid-cols-12 border-b-4 border-black h-[10vh] ${
 					activeOption || open ? 'bg-white' : ''
 				} `}
 			>
-				<div className='border-r-4 border-black'>
+				<div className='border-r-4 lg:flex lg:justify-center border-black lg:col-span-1'>
 					<div className='p-4'>
 						<button onClick={toggleDrawer}>
 							{open ? (
@@ -261,7 +300,7 @@ const Navbar = () => {
 						</button>
 					</div>
 				</div>
-				<div className='flex items-center p-4 space-x-2 font-semibold'>
+				<div className='hidden md:flex lg:items-center p-4 space-x-2 font-semibold lg:col-span-4'>
 					<div
 						className={`option ${
 							activeOption === 'women' ? 'active underline' : ''
@@ -290,28 +329,27 @@ const Navbar = () => {
 						Babies
 					</div>
 				</div>
-				<div className='flex items-center justify-center mx-auto text-lg font-bold tracking-widest'>
+				<div className='flex items-center justify-center mx-auto text-lg font-bold tracking-widest lg:col-span-3'>
 					KWS
 				</div>
-				<div className='flex items-center pr-4 space-x-4'>
+				<div className='hidden lg:flex lg:items-center lg:justify-end pr-4 space-x-4 lg:col-span-3'>
 					<div>English</div>
 					<div className='z-10'>
-						{!cartOpen && (
-							<button onClick={toggleDropdown}>
-								<SlUser />
-							</button>
-						)}
+						<button onClick={toggleDropdown}>
+							<SlUser />
+						</button>
+
 						{renderDropdownContent()}
 					</div>
 				</div>
-				<div className='border-l-4 border-black'>
+				<div className='border-l-4 lg:flex lg:justify-center border-black lg:col-span-1'>
 					<div className='p-4'>
 						<button onClick={toggleCartDrawer}>
 							<FiShoppingCart size={30} />
 						</button>
 					</div>
 				</div>
-			</section>
+			</div>
 			{renderNavigationContent()}
 			{renderOptionContent()}
 			{renderCartDrawer()}

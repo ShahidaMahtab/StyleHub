@@ -5,7 +5,7 @@ import CategoryProduct from '../components/Home/CategoryProduct';
 const Home = () => {
 	return (
 		<div className='space-y-20 '>
-			<Banner />
+			{/* 	<Banner /> */}
 			<StyleGuide />
 			<CategoryProduct />
 		</div>
