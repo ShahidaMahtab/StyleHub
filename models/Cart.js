@@ -14,9 +14,8 @@ const CartSchema = new mongoose.Schema(
       default: "image.jpg",
     },
     price: {
-      type: Number,
+      type: String,
       required: [true, "Please provide product price"],
-      default: 0,
     },
     color: {
       type: [String],

@@ -9,9 +9,8 @@ const ProductSchema = new mongoose.Schema(
       maxlength: [100, "Name can not be more than 100 characters"],
     },
     price: {
-      type: Number,
+      type: String,
       required: [true, "Please provide product price"],
-      default: 0,
     },
     // description: {
     //   type: String,
@@ -25,7 +24,11 @@ const ProductSchema = new mongoose.Schema(
     category: {
       type: String,
       required: [true, "Please provide product category"],
-      enum: ["punjabi", "jacket", "other"],
+      enum: ["men", "women", "leatherGoods", "jewelry"],
+    },
+    subcategory: {
+      type: String,
+      required: [true, "Please provide product sub category"],
     },
     color: {
       type: [String],

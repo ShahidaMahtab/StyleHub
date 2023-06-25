@@ -1,17 +1,16 @@
 import connect from "@/middleware/mongoose";
 import User from "@/models/User";
 import { NextResponse } from "next/server";
-
+import CryptoJS from "crypto-js";
 export const GET = async (request, { params }) => {
   const { email } = params;
 
   try {
     await connect();
-    // Find cart items based on the id parameter
-    const user = await User.findOne({ email: email }, { role: 1 });
+    // Find user items based on the id parameter
+    const user = await User.findOne({ email });
     if (user) {
-      /* 		console.log(user.role); */
-      return NextResponse.json({ role: user.role });
+      return NextResponse.json(user);
     } else {
       // Handle case when user is not found
       return new NextResponse("User not found", { status: 404 });
@@ -21,3 +20,69 @@ export const GET = async (request, { params }) => {
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 };
+
+//update the user info
+export const PUT = async (request, { params }) => {
+  const { email } = params;
+  try {
+    await connect();
+    const body = await request.json();
+    // Find the user based on the email parameter
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return new NextResponse("User not found", { status: 404 });
+    }
+    const { firstName, lastName, newEmail, phone } = body;
+    console.log(request.body);
+    // Update the user information with the request body data
+    user.firstName = firstName || user.firstName;
+    user.lastName = lastName || user.lastName;
+    user.phone = phone || user.phone;
+    user.email = newEmail || user.email;
+
+    // Save the updated user
+    await user.save();
+
+    return new NextResponse("User information updated successfully");
+  } catch (error) {
+    console.error("An error occurred while updating user information:", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
+};
+
+//update user password
+export const POST = async (request, { params }) => {
+  const { email } = params;
+  console.log(email)
+  try {
+    await connect();
+    const body = await request.json();
+
+    // Find the user based on the email parameter
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return new NextResponse("User not found", { status: 404 });
+    }
+
+    // Match decrypted password with ppassword
+    const bytes = CryptoJS.AES.decrypt(user.password, "secret123");
+    let decryptedPass = bytes.toString(CryptoJS.enc.Utf8);
+    if (decryptedPass !== body.ppassword) {
+      return new NextResponse("Invalid current password", { status: 400 });
+    }
+
+    // Update the password
+    user.password = CryptoJS.AES.encrypt(body.password, "secret123").toString();
+
+    // Save the updated user
+    await user.save();
+
+    return new NextResponse("Password reset successful");
+  } catch (error) {
+    console.error("An error occurred while updating user information:", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
+};
+

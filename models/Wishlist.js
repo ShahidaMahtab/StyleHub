@@ -9,9 +9,8 @@ const WishlistSchema = new mongoose.Schema(
       maxlength: [100, "Name can not be more than 100 characters"],
     },
     price: {
-      type: Number,
-      required: [true, "Please provide product price"],
-      default: 0,
+      type: String,
+      required: [true, "Please provide product"],
     },
     email: {
       type: String,
@@ -21,10 +20,10 @@ const WishlistSchema = new mongoose.Schema(
       default: "/uploads/example.jpeg",
     },
     productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Products",
-        required: true,
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Products",
+      required: true,
+    },
   },
   { timestamps: true }
 );
