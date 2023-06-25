@@ -1,17 +1,9 @@
 const Loading = () => {
-  return (
-    // <lottie-player
-    //   autoplay
-    //   loop
-    //   background="transparent"
-    //   src="https://assets4.lottiefiles.com/packages/lf20_rV2u164IHk.json"
-    //   // style={{
-    //   // 	width: loadingSize,
-    //   // 	height: loadingSize,
-    //   // }}
-    // />
-    <h1>loading</h1>
-  );
+	return (
+		<div className='mt-32'>
+			<h2 className='text-lg py-20'>Loading</h2>
+		</div>
+	);
 };
 
 export default Loading;
