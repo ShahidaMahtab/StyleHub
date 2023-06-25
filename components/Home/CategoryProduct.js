@@ -5,23 +5,12 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { FiChevronsRight } from 'react-icons/fi';
-
+import categoryProducts from '@/utils/categoryProducts';
 import './CategoryProduct.css';
-async function getData() {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/products`, {
-		cache: 'no-store',
-	});
-
-	if (!res.ok) {
-		throw new Error('Failed to fetch data');
-	}
-
-	return res.json();
-}
 
 const CategoryProduct = async () => {
-	const data = await getData();
-	const products = data.products;
+	const products = await categoryProducts;
+	console.log(products);
 	const settings = {
 		dots: true,
 		infinite: true,
@@ -35,7 +24,7 @@ const CategoryProduct = async () => {
 		<section className=''>
 			<div className=' '>
 				<Slider {...settings}>
-					{products.slice(0, 8).map((product) => (
+					{products.map((product) => (
 						<Link
 							href={`/collections/${product.category}`}
 							key={product._id}

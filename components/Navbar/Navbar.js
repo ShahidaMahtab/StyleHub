@@ -106,7 +106,7 @@ const Navbar = () => {
 				.then((data) => {
 					setCartItems(data.cartItems);
 				});
-		}, [cartItems]);
+		}, [cartItems, email]);
 		if (cartOpen) {
 			return (
 				<div className='fixed inset-0 z-50 flex justify-end bg-black bg-opacity-25'>
@@ -281,9 +281,12 @@ const Navbar = () => {
 	};
 	return (
 		<section className='fixed top-0 left-0 right-0 z-50 bg-white '>
-			<div className='text-center text-white bg-black'>
-				<marquee>Free shipping & returns for Canada & USA.</marquee>
-			</div>
+			<Link href='/sales'>
+				{' '}
+				<div className='text-center text-white bg-black'>
+					<marquee>Free shipping & returns for Canada & USA.</marquee>
+				</div>
+			</Link>
 			<div
 				className={`flex lg:grid lg:grid-cols-12 border-b-4 border-black h-[10vh] ${
 					activeOption || open ? 'bg-white' : ''
