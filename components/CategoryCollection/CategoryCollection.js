@@ -6,7 +6,9 @@ const CategoryCollection = ({ product }) => {
 	return (
 		<div className='mt-20'>
 			<Link href={`/product-details/${_id}`} target='_blank'>
-				<Image src={image} width={500} height={500} alt={title} />
+				<div className='border rounded-xl'>
+					<Image src={image} width={500} height={500} alt={title} />
+				</div>
 				<small className='text-gray-700 text-bold'>{title}</small>
 				<br />
 				<small className='font-bold'>${price}</small>
