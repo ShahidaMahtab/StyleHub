@@ -13,7 +13,7 @@ const Footer = () => {
 					<div className='mx-auto pt-4'>
 						<Image src={Logo} width={120} height={120} alt='logo' />
 					</div>
-					<div className='grid grid-rows-3 lg:grid-cols-3 text-center tracking-wider'>
+					<div className='grid grid-rows-3 lg:flex  items-center justify-center lg:space-x-4 text-center tracking-wider'>
 						<div>
 							<h4 className='text-base font-semibold mb-2'>
 								DELIVERY & RETURNS

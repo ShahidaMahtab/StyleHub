@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { AiOutlineArrowRight } from 'react-icons/ai';
 
 const SalesPage = () => {
-	const [timerDays, setTimerDays] = useState('02');
+	const [timerDays, setTimerDays] = useState('03');
 	const [timerHours, setTimerHours] = useState('00');
 	const [timerMinutes, setTimerMinutes] = useState('00');
 	const [timerSeconds, setTimerSeconds] = useState('00');
@@ -48,7 +49,7 @@ const SalesPage = () => {
 			}, 1000);
 		} else {
 			const countdownDate =
-				new Date().getTime() + 2 * 24 * 60 * 60 * 1000;
+				new Date().getTime() + 3 * 24 * 60 * 60 * 1000;
 			saveInLocalStorage(countdownDate);
 			interval.current = setInterval(() => {
 				startTimer(+countdownDate);
@@ -59,22 +60,36 @@ const SalesPage = () => {
 	}, []);
 
 	return (
-		<div className=' flex justify-center items-center font-semibold space-x-2  w-screen h-screen text-8xl'>
-			<div>
-				-{timerDays}
-				<sup>D</sup>
+		<div className=' flex flex-col justify-center items-center font-semibold space-y-4  w-screen h-screen  bg-black text-white'>
+			<div className='flex text-2xl lg:text-8xl space-x-2 pb-4'>
+				<div>
+					-{timerDays}
+					<sup>D</sup>
+				</div>
+				<div>
+					{timerHours}
+					<sup>H</sup>
+				</div>
+				<div>
+					{timerMinutes}
+					<sup>M</sup>
+				</div>
+				<div>
+					{timerSeconds}
+					<sup>S</sup>
+				</div>
 			</div>
-			<div>
-				{timerHours}
-				<sup>H</sup>
-			</div>
-			<div>
-				{timerMinutes}
-				<sup>M</sup>
-			</div>
-			<div>
-				{timerSeconds}
-				<sup>S</sup>
+			<div className='flex'>
+				<input
+					type='password'
+					name=''
+					id=''
+					className='bg-black text-white  focus:outline-none border-b border-white pb-4'
+					placeholder='PASSWORD'
+				/>
+				<div>
+					<AiOutlineArrowRight size={24} />
+				</div>
 			</div>
 		</div>
 	);
