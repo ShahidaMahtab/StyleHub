@@ -15,7 +15,7 @@ export default function Page() {
   } = useForm();
 
   const router = useRouter();
-  const { user,logout} = useUser();
+  const { user, logout } = useUser();
   const email = user?.email;
   // Get token value from the URL query parameter
   // useEffect(() => {
@@ -28,14 +28,14 @@ export default function Page() {
     console.log(data);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST}/api/user/${email}`,
+        `${process.env.NEXT_PUBLIC_HOST}/api/password/${email}`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            ppassword:data.ppassword,
+            ppassword: data.ppassword, // Use the correct property name here
             password: data.password,
             cpassword: data.cpassword,
           }),

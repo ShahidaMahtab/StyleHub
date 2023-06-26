@@ -51,38 +51,3 @@ export const PUT = async (request, { params }) => {
   }
 };
 
-//update user password
-export const POST = async (request, { params }) => {
-  const { email } = params;
-  console.log(email)
-  try {
-    await connect();
-    const body = await request.json();
-
-    // Find the user based on the email parameter
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return new NextResponse("User not found", { status: 404 });
-    }
-
-    // Match decrypted password with ppassword
-    const bytes = CryptoJS.AES.decrypt(user.password, "secret123");
-    let decryptedPass = bytes.toString(CryptoJS.enc.Utf8);
-    if (decryptedPass !== body.ppassword) {
-      return new NextResponse("Invalid current password", { status: 400 });
-    }
-
-    // Update the password
-    user.password = CryptoJS.AES.encrypt(body.password, "secret123").toString();
-
-    // Save the updated user
-    await user.save();
-
-    return new NextResponse("Password reset successful");
-  } catch (error) {
-    console.error("An error occurred while updating user information:", error);
-    return new NextResponse("Internal Server Error", { status: 500 });
-  }
-};
-

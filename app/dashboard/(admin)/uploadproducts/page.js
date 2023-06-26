@@ -22,7 +22,7 @@ export default function page() {
     let response = await res.json();
     console.log(response);
     reset();
-    toast.success("Your account has been created", {
+    toast.success("Your product has been created", {
       position: "bottom-left",
       autoClose: 5000,
       hideProgressBar: false,
@@ -98,7 +98,7 @@ export default function page() {
               className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
             />
           </div>
-
+{/* quantity */}
           <div>
             <label
               htmlFor="quantity"
@@ -113,8 +113,66 @@ export default function page() {
               className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
             />
           </div>
+          {/* category */}
           <div className="flex flex-wrap -mx-2">
-            <div className="w-full px-2 md:w-1/3">
+            <div className="w-full px-2 md:w-1/2">
+              <div>
+                <label
+                  htmlFor="category"
+                  className="inline-block mb-2 text-sm text-gray-800 sm:text-base"
+                >
+                  Category
+                </label>
+                <select
+                  className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
+                  {...register("category")}
+                >
+                  <option value="men">Men</option>
+                  <option value="women">Women</option>
+                  <option value="leatherGoods">Leather Goods</option>
+                  <option value="jewelry">Jewelry</option>
+                </select>
+              </div>
+            </div>
+          {/* subcategory */}
+            <div className="w-full px-2 md:w-1/2">
+              <div>
+                <label
+                  htmlFor="subcategory"
+                  className="inline-block mb-2 text-sm text-gray-800 sm:text-base"
+                >
+                  Sub Category
+                </label>
+                <select
+                  className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
+                  {...register("subcategory")}
+                >
+                  <option value="ready-to-wear">Ready to wear</option>
+                  <option value="t-shirts">T-shirts and Polos</option>
+                  <option value="shirts">Shirts</option>
+                  <option value="knitwear">Knitwear</option>
+                  <option value="jacket">Jacket</option>
+                  <option value="outerwear">Outerwear</option>
+                  <option value="swimwear">Swimwear</option>
+                  <option value="pants">Pants</option>
+                  <option value="puffer-jackets">Puffer Jackets</option>
+                  <option value="tops">Tops</option>
+                  <option value="skirt">Skirt</option>
+                  <option value="coat">Coat</option>
+                  <option value="wallets-for-women">Wallets for Women</option>
+                  <option value="dresses">Dresses</option>
+                  <option value="all-fashion-jewellery">
+                    All Fashion Jewellery
+                  </option>
+                  <option value="earrings">Earrings</option>
+                  <option value="necklaces">Necklaces</option>
+                  <option value="bracelet">Bracelet</option>
+                  <option value="rings">Rings</option>
+              
+                </select>
+              </div>
+            </div>
+            <div className="w-full px-2 mt-5 md:w-1/2">
               <div>
                 <label
                   htmlFor="color"
@@ -128,14 +186,13 @@ export default function page() {
                 >
                   <option value="red">Red</option>
                   <option value="black">Black</option>
-                  <option value="red">Red</option>
                   <option value="blue">Blue</option>
-                  <option value="other">other</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
             </div>
 
-            <div className="w-full px-2 md:w-1/3">
+            <div className="w-full px-2 mt-5 md:w-1/2">
               <div>
                 <label
                   htmlFor="size"
@@ -151,26 +208,7 @@ export default function page() {
                   <option value="m">M</option>
                   <option value="l">L</option>
                   <option value="xl">XL</option>
-                  <option value="other">other</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="w-full px-2 md:w-1/3">
-              <div>
-                <label
-                  htmlFor="category"
-                  className="inline-block mb-2 text-sm text-gray-800 sm:text-base"
-                >
-                  Category
-                </label>
-                <select
-                  className="w-full px-3 py-2 text-gray-800 transition duration-100 border rounded outline-none bg-gray-50 ring-indigo-300 focus:ring"
-                  {...register("category")}
-                >
-                  <option value="jacket">Jacket</option>
-                  <option value="punjabi">Punjabi</option>
-                  <option value="other">other</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
             </div>

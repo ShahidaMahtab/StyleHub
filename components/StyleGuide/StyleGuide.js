@@ -12,14 +12,14 @@ export default function StyleGuide({ product }) {
         <br />
         <small className="font-bold">${price}</small>
         <div className="flex justify-center items-center">
-          {color.map((c) => (
+          {/* {color.map((c) => (
             <input
               type="radio"
               id="radio-button"
               style={{ backgroundColor: `${c}` }}
               className="w-4 h-4 border-2 border-gray-300 rounded-full appearance-none checked:bg-blue-500 checked:border-blue-500 focus:outline-none ring-2 ring-transparent"
             />
-          ))}
+          ))} */}
         </div>
       </Link>
     </div>

@@ -4,31 +4,20 @@ import React, { useEffect, useState } from "react";
 import { BiChevronsRight } from "react-icons/bi";
 import { useUser } from "../Context/UserContext";
 
-// async function getData(email) {
-// 	const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/user/${email}`, {
-// 		cache: 'no-store',
-// 	});
-
-// 	if (!res.ok) {
-// 		throw new Error('Failed to fetch data');
-// 	}
-
-// 	return res.json();
-// }
 const Sidebar = () => {
   const { user, logout } = useUser();
-  const email = user.email;
+  const email = user?.email;
   const [userRole, setUserRole] = useState({});
 
-  /* 	useEffect(() => {
-		fetch(`${process.env.NEXT_PUBLIC_HOST}/api/user/${email}`)
-			.then((res) => res.json())
-			.then((data) => {
-				setUserRole(data.role);
-			});
-	}, [email]);
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_HOST}/api/user/${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserRole(data.role);
+      });
+  }, [email, userRole]);
 
-	console.log(userRole); */
+  console.log(userRole);
   const users = [
     {
       name: "Orders",
@@ -50,11 +39,11 @@ const Sidebar = () => {
       pathname: "/dashboard/change-password",
       icon: <BiChevronsRight size={25} />,
     },
-    {
-      name: "Logout",
-      pathname: "/",
-      icon: <BiChevronsRight size={25} />,
-    },
+    // {
+    //   name: "Logout",
+    //   pathname: "/",
+    //   icon: <BiChevronsRight size={25} />,
+    // },
   ];
   return (
     <div className="min-h-screen">
@@ -69,30 +58,64 @@ const Sidebar = () => {
               />
             </div>
             <ul className="mt-6 space-y-3 tracking-wide">
-              {users.map((u) => (
-                <li key={u.name} className="min-w-max">
-                  <Link
-                    prefetch
-                    href={u?.pathname}
-                    aria-label="dashboard"
-                    className="relative flex items-center px-4 py-3 space-x-4 text-white bg-gradient-to-r from-sky-600 to-cyan-400"
-                  >
-                    {u.icon}
-                    {/* <svg
-                      className="w-6 h-6 -ml-1"
-                      viewBox="0 0 24 24"
-                      fill="none"
+              {userRole === "admin" ? (
+                <>
+                  <li className="min-w-max">
+                    <Link
+                      prefetch
+                      href="/dashboard/uploadproducts"
+                      aria-label="dashboard"
+                      className="relative flex items-center px-4 py-3 space-x-4 text-white bg-gradient-to-r from-sky-600 to-cyan-400"
                     >
-                    
-                      <path
-                        d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
-                        className="fill-current group-hover:text-sky-300"
-                      ></path>
-                    </svg> */}
-                    <span className="-mr-1 font-medium">{u.name}</span>
-                  </Link>
-                </li>
-              ))}
+                      <BiChevronsRight size={25} />
+                      <span className="-mr-1 font-medium">Upload Products</span>
+                    </Link>
+                  </li>
+                  <li className="min-w-max">
+                    <Link
+                      prefetch
+                      href="/dashboard/uploadproducts"
+                      aria-label="dashboard"
+                      className="relative flex items-center px-4 py-3 space-x-4 text-white bg-gradient-to-r from-sky-600 to-cyan-400"
+                    >
+                      <BiChevronsRight size={25} />
+                      <Link href="/" onClick={logout}>
+                        <span className="-mr-1 font-medium">Logout</span>
+                      </Link>
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  {users?.map((u) => (
+                    <li key={u.name} className="min-w-max">
+                      <Link
+                        prefetch
+                        href={u?.pathname}
+                        aria-label="dashboard"
+                        className="relative flex items-center px-4 py-3 space-x-4 text-white bg-gradient-to-r from-sky-600 to-cyan-400"
+                      >
+                        {u.icon}
+
+                        <span className="-mr-1 font-medium">{u.name}</span>
+                      </Link>
+                    </li>
+                  ))}
+                  <li className="min-w-max">
+                    <Link
+                      prefetch
+                      href="/" onClick={logout}
+                      aria-label="dashboard"
+                      className="relative flex items-center px-4 py-3 space-x-4 text-white bg-gradient-to-r from-sky-600 to-cyan-400"
+                    >
+                      <BiChevronsRight size={25} />
+                     
+                        <span className="-mr-1 font-medium">Logout</span>
+                   
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <div className="-mb-3 w-max">
