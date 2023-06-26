@@ -35,7 +35,7 @@ const page = async ({ params }) => {
 	const data = await getData(params.id);
 
 	return (
-		<div className='py-6 mt-32 sm:py-8 lg:py-12'>
+		<div className='py-6 mt-36 sm:py-8 lg:py-12'>
 			<Details data={data} />
 		</div>
 	);

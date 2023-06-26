@@ -30,6 +30,7 @@ export default function Layout({ children }) {
 		'/dashboard/account-info',
 		'/dashboard/change-password',
 		'/dashboard/wishlist',
+		'/sales',
 	];
 
 	return (

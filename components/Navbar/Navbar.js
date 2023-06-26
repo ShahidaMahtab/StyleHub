@@ -21,6 +21,8 @@ const Navbar = () => {
 	useEffect(() => {
 		const handleResize = () => {
 			setOpen(false);
+			setCartOpen(false);
+			setDropdownOpen(false);
 		};
 
 		window.addEventListener('resize', handleResize);
@@ -47,13 +49,17 @@ const Navbar = () => {
 	const handleLinkClick = () => {
 		setDropdownOpen(false);
 	};
+	const handleCartClose = () => {
+		setCartOpen(false);
+	};
+
 	const renderNavigationContent = () => {
 		if (open) {
 			return (
 				<div className='fixed z-50 w-full h-[80vh] bg-white'>
 					<div className='container pt-4 mx-auto lg:flex lg:space-x-4'>
 						<div>
-							<NavigationContent />
+							<NavigationContent toggleDrawer={toggleDrawer} />
 						</div>
 						<div className='flex flex-col pt-2 pl-2 space-y-2 lg:pl-0'>
 							<Link href='/about-us'>
@@ -191,6 +197,7 @@ const Navbar = () => {
 							{cartItems.length > 0 ? (
 								<div className='mt-6'>
 									<Link
+										onClick={handleCartClose}
 										href='/checkout'
 										className='flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700'
 									>
