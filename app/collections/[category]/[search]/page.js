@@ -24,6 +24,12 @@ export default async function Category({ params }) {
 				{data?.filterProducts?.map((product) => (
 					<CategoryCollection key={product._id} product={product} />
 				))}
+				{data?.filterProducts?.length == 0 && (
+					<div className='flex justify-center text-center items-center'>
+						{' '}
+						coming soon
+					</div>
+				)}
 			</div>
 		</div>
 	);
