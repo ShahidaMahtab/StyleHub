@@ -5,7 +5,7 @@ const CategoryCollection = ({ product }) => {
 	const { title, _id, image, price, color, size, category } = product || {};
 	return (
 		<div className='mt-20'>
-			<Link href={`/product-details/${_id}`} target='_blank'>
+			<Link href={`/product-details/${_id}`}>
 				<div className='border rounded-xl'>
 					<Image src={image} width={500} height={500} alt={title} />
 				</div>
