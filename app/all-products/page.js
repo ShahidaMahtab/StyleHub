@@ -73,33 +73,32 @@ const Page = () => {
       </Suspense>
       {/* pagination start */}
       <nav aria-label="Page navigation example" className="mt-5">
-  <div className="flex justify-center">
-    <ul className="flex flex-wrap items-center -space-x-px">
-      <li>
-        <button
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-        >
-          <span className="sr-only">Previous</span>
-          <IoMdArrowBack />
-        </button>
-      </li>
-      {paginationButtons}
-      <li>
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === data?.totalPages}
-          className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-        >
-          <span className="sr-only">Next</span>
-          <IoMdArrowForward />
-        </button>
-      </li>
-    </ul>
-  </div>
-</nav>
-
+        <div className="flex justify-center">
+          <ul className="flex flex-wrap items-center -space-x-px">
+            <li>
+              <button
+                onClick={handlePreviousPage}
+                disabled={currentPage === 1}
+                className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                <span className="sr-only">Previous</span>
+                <IoMdArrowBack />
+              </button>
+            </li>
+            {paginationButtons}
+            <li>
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === data?.totalPages}
+                className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                <span className="sr-only">Next</span>
+                <IoMdArrowForward />
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
   );
 };
