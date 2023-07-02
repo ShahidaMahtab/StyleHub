@@ -7,7 +7,7 @@ export default function StyleGuide({ product }) {
   return (
     <div className="mt-4">
       <Link href={`/product-details/${_id}`}>
-        <Image src={image} width={500} height={500} alt={title}/>
+        <Image className="border rounded-xl" src={image} width={500} height={500} alt={title}/>
         <small className="text-gray-700 text-bold">{title}</small>
         <br />
         <small className="font-bold">${price}</small>

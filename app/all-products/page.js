@@ -1,7 +1,8 @@
 "use client";
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import AllProducts from "@/components/AllProducts/AllProducts";
+import Loading from "../loading";
 
 async function getData(page) {
   const res = await fetch(
@@ -21,12 +22,14 @@ async function getData(page) {
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await getData(currentPage);
         setData(result);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -50,10 +53,10 @@ const Page = () => {
       <li key={index}>
         <button
           onClick={() => setCurrentPage(index + 1)}
-          className={`px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+          className={`px-3 py-2 leading-tight   ${
             currentPage === index + 1
-              ? "text-blue-500 border-blue-300 bg-blue-50"
-              : "text-gray-500"
+              ? "text-blue-600 border-blue-300 bg-blue-50"
+              : ""
           }`}
         >
           {index + 1}
@@ -61,18 +64,20 @@ const Page = () => {
       </li>
     )
   );
-
+  // loading
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="container px-10 mx-auto mt-32">
-      <Suspense fallback={<p>Loading feed...</p>}>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4">
-          {data?.products.map((product) => (
-            <AllProducts key={product._id} product={product} />
-          ))}
-        </div>
-      </Suspense>
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4">
+        {data?.products.map((product) => (
+          <AllProducts key={product._id} product={product} />
+        ))}
+      </div>
+
       {/* pagination start */}
-      <nav aria-label="Page navigation example" className="mt-5">
+      <div aria-label="Page navigation example" className="mt-5">
         <div className="flex justify-center">
           <ul className="flex flex-wrap items-center -space-x-px">
             <li>
@@ -98,7 +103,7 @@ const Page = () => {
             </li>
           </ul>
         </div>
-      </nav>
+      </div>
     </div>
   );
 };

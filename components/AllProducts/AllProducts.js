@@ -1,17 +1,17 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function AllProducts({ product }) {
-	const { title, _id, image, price, color, size } = product || {};
-	return (
-		<div className='mt-4'>
-			<Link href={`/product-details/${_id}`}>
-				<Image src={image} width={500} height={500} alt={title} />
-				<small className='text-gray-700 text-bold'>{title}</small>
-				<br />
-				<small className='font-bold'>${price}</small>
-				{/*  <div className="flex justify-center items-center">
+  const { title, _id, image, price, color, size } = product || {};
+  return (
+    <div className="mt-4 ">
+      <Link href={`/product-details/${_id}`}>
+        <Image className="border rounded-xl" src={image} width={500} height={500} alt={title} />
+        <small className="text-gray-700 text-bold">{title}</small>
+        <br />
+        <small className="font-bold">${price}</small>
+        {/*  <div className="flex items-center justify-center">
           {color.map((c) => (
             <input
               type="radio"
@@ -21,7 +21,7 @@ export default function AllProducts({ product }) {
             />
           ))}
         </div> */}
-			</Link>
-		</div>
-	);
+      </Link>
+    </div>
+  );
 }
