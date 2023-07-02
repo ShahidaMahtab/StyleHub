@@ -62,12 +62,12 @@ const Navbar = () => {
 							<NavigationContent toggleDrawer={toggleDrawer} />
 						</div>
 						<div className='flex flex-col pt-2 pl-2 space-y-2 lg:pl-0'>
-							<Link href='/about-us'>
+							<Link href='/about-us' onClick={toggleDrawer}>
 								<h1 className='text-xl font-medium hover:underline'>
 									About Us
 								</h1>
 							</Link>
-							<Link href='/all-products'>
+							<Link href='/all-products' onClick={toggleDrawer}>
 								<h1 className='text-xl font-medium no-underline hover:underline'>
 									All Products
 								</h1>
