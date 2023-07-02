@@ -11,7 +11,7 @@ import Loading from '@/app/loading';
 import { useState } from 'react';
 
 const CategoryProduct = () => {
-	const [isLoading, setIsLoading] = useState(false);
+	/* const [isLoading, setIsLoading] = useState(false);
 
 	const handleLinkClick = () => {
 		// Simulate an API call or time-consuming operation
@@ -21,8 +21,8 @@ const CategoryProduct = () => {
 		setTimeout(() => {
 			setIsLoading(false);
 			// Add your link navigation logic here
-		}, 4000);
-	};
+		}, 7000);
+	}; */
 	const settings = {
 		dots: true,
 		infinite: true,
@@ -58,9 +58,9 @@ const CategoryProduct = () => {
 			},
 		],
 	};
-	if (isLoading) {
+	/* if (isLoading) {
 		return <Loading />;
-	}
+	} */
 
 	return (
 		<section className=''>
@@ -71,7 +71,7 @@ const CategoryProduct = () => {
 							href={`/collections/${product.category}`}
 							key={product._id}
 							className='pb-10'
-							onClick={handleLinkClick}
+							/* onClick={handleLinkClick} */
 						>
 							<div className='space-y-4 pr-[1.5px]'>
 								<div className=''>

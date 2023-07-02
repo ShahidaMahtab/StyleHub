@@ -9,6 +9,7 @@ import { useUser } from '../Context/UserContext';
 import NavigationContent from './NavigationContent';
 import { BiLogOut } from 'react-icons/bi';
 import { MdOutlineAccountCircle } from 'react-icons/md';
+import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
 	const { user, logout } = useUser();
 	const [cartItems, setCartItems] = useState([]);
@@ -56,49 +57,73 @@ const Navbar = () => {
 	const renderNavigationContent = () => {
 		if (open) {
 			return (
-				<div className='fixed z-50 w-full h-[80vh] bg-white'>
-					<div className='container pt-4 mx-auto lg:flex lg:space-x-4'>
-						<div>
-							<NavigationContent toggleDrawer={toggleDrawer} />
-						</div>
-						<div className='flex flex-col pt-2 pl-2 space-y-2 lg:pl-0'>
-							<Link href='/about-us' onClick={toggleDrawer}>
-								<h1 className='text-xl font-medium hover:underline'>
-									About Us
-								</h1>
-							</Link>
-							<Link href='/all-products' onClick={toggleDrawer}>
-								<h1 className='text-xl font-medium no-underline hover:underline'>
-									All Products
-								</h1>
-							</Link>
-							<div className='lg:hidden'>
-								{!user?.value ? (
-									<Link
-										href='/signup'
-										className='flex items-center space-x-2 text-xl font-medium capitalize'
-									>
-										<MdOutlineAccountCircle size={30} />
-										<button onClick={handleLinkClick}>
-											Account Info
-										</button>
-									</Link>
-								) : (
-									<Link
-										href='/'
-										onClick={logout}
-										className='flex items-center space-x-2 text-xl font-medium capitalize '
-									>
-										<BiLogOut />
-										<button onClick={handleLinkClick}>
-											logout
-										</button>
-									</Link>
-								)}
+				<AnimatePresence>
+					{open && (
+						<motion.div
+							initial={{ opacity: 0, y: -20 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -20 }}
+							transition={{ duration: 0.3 }} // Add the transition prop
+							className='fixed z-50 w-full h-[80vh] bg-white'
+						>
+							<div className='fixed z-50 w-full h-[80vh] bg-white'>
+								<div className='container pt-4 mx-auto lg:flex lg:space-x-4'>
+									<div>
+										<NavigationContent
+											toggleDrawer={toggleDrawer}
+										/>
+									</div>
+									<div className='flex flex-col pt-2 pl-2 space-y-2 lg:pl-0'>
+										<Link href='/about-us'>
+											<h1 className='text-xl font-medium hover:underline'>
+												About Us
+											</h1>
+										</Link>
+										<Link href='/all-products'>
+											<h1 className='text-xl font-medium no-underline hover:underline'>
+												All Products
+											</h1>
+										</Link>
+										<div className='lg:hidden'>
+											{!user?.value ? (
+												<Link
+													href='/signup'
+													className='flex items-center space-x-2 text-xl font-medium capitalize'
+												>
+													<MdOutlineAccountCircle
+														size={30}
+													/>
+													<button
+														onClick={
+															handleLinkClick
+														}
+													>
+														Account Info
+													</button>
+												</Link>
+											) : (
+												<Link
+													href='/'
+													onClick={logout}
+													className='flex items-center space-x-2 text-xl font-medium capitalize '
+												>
+													<BiLogOut />
+													<button
+														onClick={
+															handleLinkClick
+														}
+													>
+														logout
+													</button>
+												</Link>
+											)}
+										</div>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-				</div>
+						</motion.div>
+					)}
+				</AnimatePresence>
 			);
 		}
 
@@ -116,7 +141,7 @@ const Navbar = () => {
 		if (cartOpen) {
 			return (
 				<div className='fixed inset-0 z-50 flex justify-end bg-black bg-opacity-25'>
-					<div className='w-full h-screen bg-white lg:w-1/3'>
+					<div className='w-full lg:w-1/3 h-screen bg-white'>
 						<div className='flex justify-end p-2'>
 							<button onClick={toggleCartDrawer}>
 								<AiOutlineClose size={30} />
@@ -299,7 +324,7 @@ const Navbar = () => {
 					activeOption || open ? 'bg-white' : ''
 				} `}
 			>
-				<div className='border-r-4 border-black lg:flex lg:justify-center lg:col-span-1'>
+				<div className='border-r-4 lg:flex lg:justify-center border-black lg:col-span-1'>
 					<div className='p-4'>
 						<button onClick={toggleDrawer}>
 							{open ? (
@@ -310,7 +335,7 @@ const Navbar = () => {
 						</button>
 					</div>
 				</div>
-				<div className='hidden p-4 space-x-2 font-semibold md:flex lg:items-center lg:col-span-4'>
+				<div className='hidden md:flex lg:items-center p-4 space-x-2 font-semibold lg:col-span-4'>
 					<div
 						className={`option ${
 							activeOption === 'women' ? 'active underline' : ''
@@ -342,7 +367,7 @@ const Navbar = () => {
 				<div className='flex items-center justify-center mx-auto text-lg font-bold tracking-widest lg:col-span-3'>
 					KWS
 				</div>
-				<div className='hidden pr-4 space-x-4 lg:flex lg:items-center lg:justify-end lg:col-span-3'>
+				<div className='hidden lg:flex lg:items-center lg:justify-end pr-4 space-x-4 lg:col-span-3'>
 					<div>English</div>
 					<div className='z-10'>
 						<button onClick={toggleDropdown}>
