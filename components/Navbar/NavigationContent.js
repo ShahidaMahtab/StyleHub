@@ -79,11 +79,11 @@ const NavigationContent = ({ toggleDrawer }) => {
       children: (
         <div>
           <Fade top>
-            {manProducts?.map((man) => (
-              <Link onClick={toggleDrawer} href={man?.pathname} key={man?.name}>
-                <h2 className="pl-2 text-lg">{man.name}</h2>
-              </Link>
-            ))}
+          {manProducts?.map((man) => (
+            <Link onClick={toggleDrawer} href={man?.pathname} key={man?.name}>
+              <h2 className="pl-2 text-lg">{man.name}</h2>
+            </Link>
+          ))}
           </Fade>
         </div>
       ),
@@ -94,15 +94,15 @@ const NavigationContent = ({ toggleDrawer }) => {
       children: (
         <div>
           <Fade top>
-            {womenProducts?.map((women) => (
-              <Link
-                onClick={toggleDrawer}
-                href={women?.pathname}
-                key={women?.name}
-              >
-                <h2 className="pl-2 text-lg">{women.name}</h2>
-              </Link>
-            ))}
+          {womenProducts?.map((women) => (
+            <Link
+              onClick={toggleDrawer}
+              href={women?.pathname}
+              key={women?.name}
+            >
+              <h2 className="pl-2 text-lg">{women.name}</h2>
+            </Link>
+          ))}
           </Fade>
         </div>
       ),
@@ -117,15 +117,15 @@ const NavigationContent = ({ toggleDrawer }) => {
       children: (
         <div>
           <Fade top>
-            {LeatherProducts.map((leather) => (
-              <Link
-                onClick={toggleDrawer}
-                href={leather?.pathname}
-                key={leather?.name}
-              >
-                <h2 className="pl-2 text-lg">{leather.name}</h2>
-              </Link>
-            ))}
+          {LeatherProducts.map((leather) => (
+            <Link
+              onClick={toggleDrawer}
+              href={leather?.pathname}
+              key={leather?.name}
+            >
+              <h2 className="pl-2 text-lg">{leather.name}</h2>
+            </Link>
+          ))}
           </Fade>
         </div>
       ),
@@ -136,15 +136,15 @@ const NavigationContent = ({ toggleDrawer }) => {
       children: (
         <div>
           <Fade top>
-            {jewelryProducts.map((jewelry) => (
-              <Link
-                onClick={toggleDrawer}
-                href={jewelry?.pathname}
-                key={jewelry?.name}
-              >
-                <h2 className="pl-2 text-lg">{jewelry.name}</h2>
-              </Link>
-            ))}
+          {jewelryProducts.map((jewelry) => (
+            <Link
+              onClick={toggleDrawer}
+              href={jewelry?.pathname}
+              key={jewelry?.name}
+            >
+              <h2 className="pl-2 text-lg">{jewelry.name}</h2>
+            </Link>
+          ))}
           </Fade>
         </div>
       ),
@@ -155,7 +155,7 @@ const NavigationContent = ({ toggleDrawer }) => {
       className="w-full lg:w-full "
       style={{ maxHeight: "70vh", overflowY: "auto" }}
     >
-      {/* <Fade top> */}
+      <Fade top>
       <Collapse
         defaultActiveKey={["1"]}
         ghost
@@ -163,7 +163,7 @@ const NavigationContent = ({ toggleDrawer }) => {
         accordion
         expandIconPosition="end"
       />
-      {/* </Fade> */}
+      </Fade>
     </div>
   );
 };

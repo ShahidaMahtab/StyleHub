@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import Slide from "react-reveal/Slide";
@@ -15,7 +16,7 @@ const CategoryCollection = ({ product }) => {
             <small className="text-gray-700 text-bold">{title}</small>
             <br />
             <small className="font-bold">${price}</small>
-            <small className="block">Cateogry:{category}</small>
+            <small className="block">Category:{category}</small>
             {/* 	<div className='flex items-center justify-center'>
 					{color.map((c) => (
 						<input
