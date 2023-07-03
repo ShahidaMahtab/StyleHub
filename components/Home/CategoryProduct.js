@@ -7,36 +7,26 @@ import 'slick-carousel/slick/slick-theme.css';
 import { FiChevronsRight } from 'react-icons/fi';
 import products from '@/utils/categoryProducts';
 import './CategoryProduct.css';
-import Loading from '@/app/loading';
-import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useLoadingContext } from '../Context/LoadingContext';
 
 const CategoryProduct = () => {
-	/* const [isLoading, setIsLoading] = useState(false);
-
-	const handleLinkClick = () => {
-		// Simulate an API call or time-consuming operation
-		setIsLoading(true);
-
-		// Simulate a delay of 2 seconds before navigating to the link
-		setTimeout(() => {
-			setIsLoading(false);
-			// Add your link navigation logic here
-		}, 7000);
-	}; */
+	const { handleLinkClick } = useLoadingContext();
 	const settings = {
 		dots: true,
 		infinite: true,
 		slidesToShow: 4,
-		slidesToScroll: 1,
-		autoplay: true,
-		speed: 2000,
-		autoplaySpeed: 2000,
+		slidesToScroll: 2,
+
+		speed: 3000,
+
+		cssEase: 'linear',
 		responsive: [
 			{
 				breakpoint: 1024,
 				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 3,
+					slidesToShow: 4,
+					slidesToScroll: 1,
 					infinite: true,
 					dots: true,
 				},
@@ -44,9 +34,12 @@ const CategoryProduct = () => {
 			{
 				breakpoint: 600,
 				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 2,
-					initialSlide: 2,
+					slidesToShow: 4,
+					slidesToScroll: 1,
+					infinite: true,
+					dots: true,
+					autoplay: true,
+					autoplaySpeed: 3000,
 				},
 			},
 			{
@@ -58,20 +51,21 @@ const CategoryProduct = () => {
 			},
 		],
 	};
-	/* if (isLoading) {
-		return <Loading />;
-	} */
 
 	return (
 		<section className=''>
-			<div className=' '>
+			<div className=''>
 				<Slider {...settings}>
 					{products.map((product) => (
 						<Link
 							href={`/collections/${product.category}`}
 							key={product._id}
-							className='pb-10'
-							/* onClick={handleLinkClick} */
+							className='pb-10 '
+							onClick={() =>
+								handleLinkClick(
+									`/collections/${product.category}`
+								)
+							}
 						>
 							<div className='space-y-4 pr-[1.5px]'>
 								<div className=''>
@@ -83,12 +77,14 @@ const CategoryProduct = () => {
 										height={327}
 									/>
 								</div>
-								<div className='mx-auto w-2/3  text-center flex items-center justify-center space-x-4 py-2 shadow-md rounded-xl capitalize border border-slate-300 '>
-									<button className='capitalize text-lg '>
-										{product.category}
-									</button>
-									<FiChevronsRight size={26} />
-								</div>
+								<motion.div whileHover={{ scale: 1.1 }}>
+									<div className='mx-auto w-2/3  text-center flex items-center justify-center space-x-4 py-2 shadow-md rounded-xl capitalize border border-slate-300 '>
+										<button className='capitalize text-lg '>
+											{product.category}
+										</button>
+										<FiChevronsRight size={26} />
+									</div>
+								</motion.div>
 							</div>
 						</Link>
 					))}
