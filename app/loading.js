@@ -15,7 +15,7 @@ const Loading = () => {
 				autoplay
 				loop
 				mode='normal'
-				src='https://assets8.lottiefiles.com/packages/lf20_usmfx6bp.json'
+				src='https://assets1.lottiefiles.com/packages/lf20_s6lxmxqw.json'
 				style={{ width: '300px', height: '300px' }}
 			></lottie-player>
 		</div>

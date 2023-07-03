@@ -8,6 +8,7 @@ import Loading from './loading';
 import { usePathname } from 'next/navigation';
 
 import { useEffect, useState } from 'react';
+import { LoadingProvider } from '@/components/Context/LoadingContext';
 
 // const inter = Inter({ subsets: ['latin'] });
 
@@ -39,13 +40,15 @@ export default function Layout({ children }) {
 			{loading ? (
 				<Loading />
 			) : (
-				<UserProvider>
-					<body>
-						{!name.includes(pathname) && <Navbar />}
-						{children}
-						{!name.includes(pathname) && <Footer />}
-					</body>
-				</UserProvider>
+				<LoadingProvider>
+					<UserProvider>
+						<body>
+							{!name.includes(pathname) && <Navbar />}
+							{children}
+							{!name.includes(pathname) && <Footer />}
+						</body>
+					</UserProvider>
+				</LoadingProvider>
 			)}
 		</html>
 	);

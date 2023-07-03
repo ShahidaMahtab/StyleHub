@@ -18,6 +18,7 @@ const Navbar = () => {
 	const [cartOpen, setCartOpen] = useState(false);
 	const [activeOption, setActiveOption] = useState(null);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
+
 	const email = user?.email;
 	useEffect(() => {
 		const handleResize = () => {
@@ -63,7 +64,7 @@ const Navbar = () => {
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
 							exit={{ opacity: 0, y: -20 }}
-							transition={{ duration: 0.3 }} // Add the transition prop
+							transition={{ duration: 0.4 }} // Add the transition prop
 							className='fixed z-50 w-full h-[80vh] bg-white'
 						>
 							<div className='fixed z-50 w-full h-[80vh] bg-white'>
@@ -74,12 +75,18 @@ const Navbar = () => {
 										/>
 									</div>
 									<div className='flex flex-col pt-2 pl-2 space-y-2 lg:pl-0'>
-										<Link href='/about-us'>
+										<Link
+											href='/about-us'
+											onClick={toggleDrawer}
+										>
 											<h1 className='text-xl font-medium hover:underline'>
 												About Us
 											</h1>
 										</Link>
-										<Link href='/all-products'>
+										<Link
+											href='/all-products'
+											onClick={toggleDrawer}
+										>
 											<h1 className='text-xl font-medium no-underline hover:underline'>
 												All Products
 											</h1>
@@ -140,108 +147,124 @@ const Navbar = () => {
 		}, [cartItems, email]);
 		if (cartOpen) {
 			return (
-				<div className='fixed inset-0 z-50 flex justify-end bg-black bg-opacity-25'>
-					<div className='w-full lg:w-1/3 h-screen bg-white'>
-						<div className='flex justify-end p-2'>
-							<button onClick={toggleCartDrawer}>
-								<AiOutlineClose size={30} />
-							</button>
-						</div>
-						<div className='container px-8 mx-auto'>
-							<h2
-								className='text-lg font-medium text-gray-900'
-								id='slide-over-title'
-							>
-								Shopping Cart
-							</h2>
-							{cartItems?.map((item) => {
-								return (
-									<div className='' key={item._id}>
-										<div className='mt-8'>
-											<div className='flow-root'>
-												<ul
-													role='list'
-													className='-my-6 divide-y divide-gray-200'
-												>
-													<li className='flex py-6'>
-														<div className='flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md'>
-															<img
-																src={item.image}
-																alt={item.title}
-																className='object-cover object-center w-full h-full'
-															/>
-														</div>
+				<AnimatePresence>
+					{cartOpen && (
+						<motion.div
+							initial={{ opacity: 0, x: '100%' }} // Initial position is off-screen to the right
+							animate={{ opacity: 1, x: 0 }} // The cart will animate to opacity 1 and x position 0 (visible on the screen)
+							exit={{ opacity: 0, x: '100%' }} // When the cart is closed, it will animate off-screen to the right
+							transition={{ duration: 0.4 }} // Add the transition prop
+							className='fixed inset-0 z-50 flex justify-end bg-black bg-opacity-25'
+						>
+							<div className='w-full lg:w-1/3 h-screen bg-white'>
+								<div className='flex justify-end p-2'>
+									<button onClick={toggleCartDrawer}>
+										<AiOutlineClose size={30} />
+									</button>
+								</div>
+								<div className='container px-8 mx-auto'>
+									<h2
+										className='text-lg font-medium text-gray-900'
+										id='slide-over-title'
+									>
+										Shopping Cart
+									</h2>
+									{cartItems?.map((item) => {
+										return (
+											<div className='' key={item._id}>
+												<div className='mt-8'>
+													<div className='flow-root'>
+														<ul
+															role='list'
+															className='-my-6 divide-y divide-gray-200'
+														>
+															<li className='flex py-6'>
+																<div className='flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md'>
+																	<img
+																		src={
+																			item.image
+																		}
+																		alt={
+																			item.title
+																		}
+																		className='object-cover object-center w-full h-full'
+																	/>
+																</div>
 
-														<div className='flex flex-col flex-1 ml-4'>
-															<div>
-																<div className='flex justify-between text-base font-medium text-gray-900'>
-																	<h3>
-																		<a href='#'>
+																<div className='flex flex-col flex-1 ml-4'>
+																	<div>
+																		<div className='flex justify-between text-base font-medium text-gray-900'>
+																			<h3>
+																				<a href='#'>
+																					{
+																						item.title
+																					}
+																				</a>
+																			</h3>
+																			<p className='ml-4'>
+																				$
+																				{
+																					item.price
+																				}
+																			</p>
+																		</div>
+																		<p className='mt-1 text-sm text-gray-500'>
 																			{
-																				item.title
+																				item.category
 																			}
-																		</a>
-																	</h3>
-																	<p className='ml-4'>
-																		$
-																		{
-																			item.price
-																		}
-																	</p>
-																</div>
-																<p className='mt-1 text-sm text-gray-500'>
-																	{
-																		item.category
-																	}
-																</p>
-															</div>
-															<div className='flex items-end justify-between flex-1 text-sm'>
-																<p className='text-gray-500'>
-																	{item.price}
-																</p>
+																		</p>
+																	</div>
+																	<div className='flex items-end justify-between flex-1 text-sm'>
+																		<p className='text-gray-500'>
+																			{
+																				item.price
+																			}
+																		</p>
 
-																<div className='flex'>
-																	<button
-																		type='button'
-																		className='font-medium text-indigo-600 hover:text-indigo-500'
-																	>
-																		{
-																			item.quantity
-																		}
-																	</button>
+																		<div className='flex'>
+																			<button
+																				type='button'
+																				className='font-medium text-indigo-600 hover:text-indigo-500'
+																			>
+																				{
+																					item.quantity
+																				}
+																			</button>
+																		</div>
+																	</div>
 																</div>
-															</div>
-														</div>
-													</li>
-												</ul>
+															</li>
+														</ul>
+													</div>
+												</div>
 											</div>
+										);
+									})}
+									{cartItems.length > 0 ? (
+										<div className='mt-6'>
+											<Link
+												onClick={handleCartClose}
+												href='/checkout'
+												className='flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700'
+											>
+												Checkout
+											</Link>
 										</div>
-									</div>
-								);
-							})}
-							{cartItems.length > 0 ? (
-								<div className='mt-6'>
-									<Link
-										onClick={handleCartClose}
-										href='/checkout'
-										className='flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700'
-									>
-										Checkout
-									</Link>
+									) : (
+										<div className='mt-6'>
+											<Link
+												href='/checkout'
+												className='flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700'
+											>
+												No Items available in the Cart
+											</Link>
+										</div>
+									)}
 								</div>
-							) : (
-								<div className='mt-6'>
-									<Link
-										href='/checkout'
-										className='flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700'
-									>
-										No Items available in the Cart
-									</Link>
-								</div>
-							)}
-						</div>
-					</div>
-				</div>
+							</div>
+						</motion.div>
+					)}
+				</AnimatePresence>
 			);
 		}
 
@@ -326,13 +349,17 @@ const Navbar = () => {
 			>
 				<div className='border-r-4 lg:flex lg:justify-center border-black lg:col-span-1'>
 					<div className='p-4'>
-						<button onClick={toggleDrawer}>
+						<motion.button
+							whileHover={{ scale: 1.3 }}
+							whileTap={{ scale: 0.9 }}
+							onClick={toggleDrawer}
+						>
 							{open ? (
 								<AiOutlineClose size={30} />
 							) : (
 								<HiOutlineBars3CenterLeft size={30} />
 							)}
-						</button>
+						</motion.button>
 					</div>
 				</div>
 				<div className='hidden md:flex lg:items-center p-4 space-x-2 font-semibold lg:col-span-4'>
@@ -379,9 +406,13 @@ const Navbar = () => {
 				</div>
 				<div className='border-l-4 border-black lg:flex lg:justify-center lg:col-span-1'>
 					<div className='p-4'>
-						<button onClick={toggleCartDrawer}>
+						<motion.button
+							whileHover={{ scale: 1.3 }}
+							whileTap={{ scale: 0.9 }}
+							onClick={toggleCartDrawer}
+						>
 							<FiShoppingCart size={30} />
-						</button>
+						</motion.button>
 					</div>
 				</div>
 			</div>

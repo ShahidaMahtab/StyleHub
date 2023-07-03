@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 @layer components {
-  .sidebar {
-    transition: all 0.4s ease-in-out;
-  }
+	.sidebar {
+		transition: all 0.4s ease-in-out;
+	}
 }
 .sidebar {
-  border-top-right-radius: 2rem;
-  border-bottom-right-radius: 2rem;
+	border-top-right-radius: 2rem;
+	border-bottom-right-radius: 2rem;
 }

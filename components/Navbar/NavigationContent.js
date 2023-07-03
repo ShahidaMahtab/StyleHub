@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Collapse } from 'antd';
 import Link from 'next/link';
+import { useLoadingContext } from '../Context/LoadingContext';
 const manProducts = [
 	{ name: 'All Ready-to-Wear', pathname: '/collections/men/ready-to-wear' },
 	{
@@ -62,10 +63,24 @@ const jewelryProducts = [
 	},
 	{ name: 'Bracelets', pathname: '/collections/jewelry/bracelet' },
 	{ name: 'Rings', pathname: '/collections/jewelry/rings' },
-	{ name: 'Brooches and Others', pathname: '/collections/jewelry/rings' },
+	{ name: 'Brooches and Others', pathname: '/collections/jewelry/brooches' },
 ];
 
 const NavigationContent = ({ toggleDrawer }) => {
+	const { handleLinkClick } = useLoadingContext();
+	const [loading, setLoading] = useState(false); // Add a loading state
+
+	const handleLinkClickAndToggleDrawer = async (link) => {
+		setLoading(true); // Set loading state to true before starting the loading process
+		try {
+			await handleLinkClick(link); // Call the handleLinkClick function with the link as an argument and wait for it to finish
+		} catch (error) {
+			console.error('Error occurred during loading:', error);
+		}
+		setLoading(false); // Set loading state to false after the loading process is complete
+		toggleDrawer(); // Call the toggleDrawer function to close the drawer
+	};
+
 	const items = [
 		{
 			key: '1',
@@ -74,7 +89,9 @@ const NavigationContent = ({ toggleDrawer }) => {
 				<div>
 					{manProducts?.map((man) => (
 						<Link
-							onClick={toggleDrawer}
+							onClick={() =>
+								handleLinkClickAndToggleDrawer(man.pathname)
+							}
 							href={man?.pathname}
 							key={man?.name}
 						>
@@ -91,7 +108,9 @@ const NavigationContent = ({ toggleDrawer }) => {
 				<div>
 					{womenProducts?.map((women) => (
 						<Link
-							onClick={toggleDrawer}
+							onClick={() =>
+								handleLinkClickAndToggleDrawer(women.pathname)
+							}
 							href={women?.pathname}
 							key={women?.name}
 						>
@@ -112,7 +131,9 @@ const NavigationContent = ({ toggleDrawer }) => {
 				<div>
 					{LeatherProducts.map((leather) => (
 						<Link
-							onClick={toggleDrawer}
+							onClick={() =>
+								handleLinkClickAndToggleDrawer(leather.pathname)
+							}
 							href={leather?.pathname}
 							key={leather?.name}
 						>
@@ -129,7 +150,9 @@ const NavigationContent = ({ toggleDrawer }) => {
 				<div>
 					{jewelryProducts.map((jewelry) => (
 						<Link
-							onClick={toggleDrawer}
+							onClick={() =>
+								handleLinkClickAndToggleDrawer(jewelry.pathname)
+							}
 							href={jewelry?.pathname}
 							key={jewelry?.name}
 						>
