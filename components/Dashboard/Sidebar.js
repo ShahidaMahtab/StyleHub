@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { BiChevronsRight } from "react-icons/bi";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 const Sidebar = () => {
   const { data: session } = useSession();
@@ -105,7 +105,7 @@ const Sidebar = () => {
                     <Link
                       prefetch
                       href="/"
-                      onClick={logout}
+                      onClick={() => signOut()}
                       aria-label="dashboard"
                       className="relative flex items-center px-4 py-3 space-x-4 text-white bg-gradient-to-r from-sky-600 to-cyan-400"
                     >

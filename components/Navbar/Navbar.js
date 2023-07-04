@@ -76,6 +76,13 @@ const Navbar = () => {
                   </div>
                   <div className="flex flex-col pt-2 pl-2 space-y-2 lg:pl-0">
                     <Fade top>
+                      <Link href="/" onClick={toggleDrawer}>
+                        <h1 className="text-xl font-medium hover:underline">
+                          Home
+                        </h1>
+                      </Link>
+                    </Fade>
+                    <Fade top>
                       <Link href="/about-us" onClick={toggleDrawer}>
                         <h1 className="text-xl font-medium hover:underline">
                           About Us
