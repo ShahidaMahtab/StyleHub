@@ -6,9 +6,8 @@ import AccordionDetails from "./Accordion/Accordion ";
 import ImagePreview from "./ImagePreview/ImagePreview";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useUser } from "../Context/UserContext";
+import { useSession } from "next-auth/react";
 export default function Details({ data }) {
-  const { user } = useUser();
   const { _id, title, price, image, color, size, quantity } =
     data.product || {};
   const [quantityProduct, setQuantityProduct] = useState(0);
@@ -16,7 +15,9 @@ export default function Details({ data }) {
   const [selectedColor, setSelectedColor] = useState(null);
   const [isInCart, setIsInCart] = useState(false);
   const [isInWishlist, setIsInWishlist] = useState(false);
-  const email = user?.email;
+  const { data: session } = useSession();
+  const email = session?.user?.tokenUser;
+
   // increase button
   const handleIncrease = () => {
     if (quantityProduct < quantity) {
@@ -182,7 +183,6 @@ export default function Details({ data }) {
     }
   };
 
-  
   return (
     <div className="px-4 mx-auto md:px-8">
       <ToastContainer

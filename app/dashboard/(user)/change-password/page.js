@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { useSession } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useUser } from "@/components/Context/UserContext";
 export default function Page() {
   const {
     register,
@@ -15,8 +15,8 @@ export default function Page() {
   } = useForm();
 
   const router = useRouter();
-  const { user, logout } = useUser();
-  const email = user?.email;
+  const { data: session } = useSession();
+  const email = session?.user?.tokenUser;
   // Get token value from the URL query parameter
   // useEffect(() => {
   //   if (localStorage.getItem("token")) {

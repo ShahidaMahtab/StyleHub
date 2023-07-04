@@ -1,7 +1,6 @@
 "use client";
 import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
-import { UserProvider } from "@/components/Context/UserContext";
 import Footer from "@/components/Footer/Footer";
 import Loading from "./loading";
 // import { motion, useScroll } from "framer-motion";
@@ -10,6 +9,7 @@ import { usePathname } from "next/navigation";
 
 import { useEffect, useState } from "react";
 import { LoadingProvider } from "@/components/Context/LoadingContext";
+import Providers from "@/components/Providers";
 
 // const inter = Inter({ subsets: ['latin'] });
 
@@ -42,13 +42,13 @@ export default function Layout({ children }) {
         <Loading />
       ) : (
         <LoadingProvider>
-          <UserProvider>
+          <Providers>
             <body>
               {!name.includes(pathname) && <Navbar />}
               {children}
               {!name.includes(pathname) && <Footer />}
             </body>
-          </UserProvider>
+          </Providers>
         </LoadingProvider>
       )}
     </html>

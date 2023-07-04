@@ -2,11 +2,11 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { BiChevronsRight } from "react-icons/bi";
-import { useUser } from "../Context/UserContext";
+import { useSession } from "next-auth/react";
 
 const Sidebar = () => {
-  const { user, logout } = useUser();
-  const email = user?.email;
+  const { data: session } = useSession();
+  const email = session?.user?.tokenUser;
   const [userRole, setUserRole] = useState({});
 
   useEffect(() => {
@@ -104,14 +104,14 @@ const Sidebar = () => {
                   <li className="min-w-max">
                     <Link
                       prefetch
-                      href="/" onClick={logout}
+                      href="/"
+                      onClick={logout}
                       aria-label="dashboard"
                       className="relative flex items-center px-4 py-3 space-x-4 text-white bg-gradient-to-r from-sky-600 to-cyan-400"
                     >
                       <BiChevronsRight size={25} />
-                     
-                        <span className="-mr-1 font-medium">Logout</span>
-                   
+
+                      <span className="-mr-1 font-medium">Logout</span>
                     </Link>
                   </li>
                 </>

@@ -1,12 +1,11 @@
 "use client";
-import { useUser } from "@/components/Context/UserContext";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Loading from "./../../../loading";
-
+import { useSession } from "next-auth/react";
 export default function page() {
-  const { user, logout } = useUser();
-  const email = user.email;
+  const { data: session } = useSession();
+  const email = session?.user?.tokenUser;
   console.log(email);
   const [wishlist, setWishlist] = useState([]);
 

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useSession } from "next-auth/react";
 export default function Page() {
   const {
     register,
@@ -17,7 +17,7 @@ export default function Page() {
   const router = useRouter();
   const [token, setToken] = useState("");
   const [resetEmail, setResetEmail] = useState("");
-
+  const { data: session } = useSession();
   // Get token value from the URL query parameter
   useEffect(() => {
     const queryString =
@@ -25,7 +25,7 @@ export default function Page() {
     const urlParams = new URLSearchParams(queryString);
     const tokenParam = urlParams.get("token");
     setToken(tokenParam);
-    if (localStorage.getItem("token")) {
+    if (session?.user?.tokenUser) {
       router.push("/");
     }
   }, []);

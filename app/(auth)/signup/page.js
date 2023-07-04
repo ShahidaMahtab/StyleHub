@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 export default function page() {
   const {
     register,
@@ -15,9 +16,10 @@ export default function page() {
   } = useForm();
 
   const router = useRouter();
+  const { data: session } = useSession();
   //when user logged in can't visit this page
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (session?.user?.tokenUser) {
       router.push("/");
     }
   }, []);
