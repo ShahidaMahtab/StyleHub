@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-
 import { useSession } from 'next-auth/react';
 export default function page() {
 	const { data: session } = useSession();
