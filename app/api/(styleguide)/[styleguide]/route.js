@@ -18,6 +18,7 @@ export async function GET(request, { params }) {
 		const styleCategory = await Styleguide.find({ type: styleguide })
 			.skip(skip)
 			.limit(perPage);
+
 		// Get total number of products
 		const totalProducts = await Styleguide.countDocuments({});
 

@@ -7,7 +7,8 @@ export async function POST(request) {
 	try {
 		await connect();
 		const body = await request.json();
-		const { firstName, lastName, email, phone, cpassword } = body;
+		/* 	console.log(body); */
+		const { firstName, lastName, email, phone } = body;
 		// first registered user is an admin
 		const isFirstAccount = (await User.countDocuments({})) === 0;
 		const role = isFirstAccount ? 'admin' : 'user';
@@ -21,11 +22,11 @@ export async function POST(request) {
 				body.password,
 				'secret123'
 			).toString(),
-			cpassword,
 		});
 		await user.save();
-		return NextResponse.json({ success: 'success' });
+		return NextResponse.json({ success: true });
 	} catch (err) {
+		console.log(err);
 		return new NextResponse('Database Error', { status: 500 });
 	}
 }

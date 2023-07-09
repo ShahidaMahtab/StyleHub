@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Collapse } from 'antd';
 import Link from 'next/link';
-import Fade from 'react-reveal/Fade';
 import { useLoadingContext } from '../Context/LoadingContext';
 const manProducts = [
 	{ name: 'All Ready-to-Wear', pathname: '/collections/men/ready-to-wear' },
@@ -93,19 +92,17 @@ const NavigationContent = ({ toggleDrawer }) => {
 			label: <h1 className='text-xl font-semibold'>Men</h1>,
 			children: (
 				<div>
-					<Fade top>
-						{manProducts?.map((man) => (
-							<Link
-								onClick={() =>
-									handleLinkClickAndToggleDrawer(man.pathname)
-								}
-								href={man?.pathname}
-								key={man?.name}
-							>
-								<h2 className='text-lg pl-2'>{man.name}</h2>
-							</Link>
-						))}
-					</Fade>
+					{manProducts?.map((man) => (
+						<Link
+							onClick={() =>
+								handleLinkClickAndToggleDrawer(man.pathname)
+							}
+							href={man?.pathname}
+							key={man?.name}
+						>
+							<h2 className='text-lg pl-2'>{man.name}</h2>
+						</Link>
+					))}
 				</div>
 			),
 		},
@@ -114,21 +111,17 @@ const NavigationContent = ({ toggleDrawer }) => {
 			label: <h1 className='text-xl font-semibold'>Women</h1>,
 			children: (
 				<div>
-					<Fade top>
-						{womenProducts?.map((women) => (
-							<Link
-								onClick={() =>
-									handleLinkClickAndToggleDrawer(
-										women.pathname
-									)
-								}
-								href={women?.pathname}
-								key={women?.name}
-							>
-								<h2 className='text-lg pl-2'>{women.name}</h2>
-							</Link>
-						))}
-					</Fade>
+					{womenProducts?.map((women) => (
+						<Link
+							onClick={() =>
+								handleLinkClickAndToggleDrawer(women.pathname)
+							}
+							href={women?.pathname}
+							key={women?.name}
+						>
+							<h2 className='text-lg pl-2'>{women.name}</h2>
+						</Link>
+					))}
 				</div>
 			),
 		},
@@ -141,21 +134,17 @@ const NavigationContent = ({ toggleDrawer }) => {
 			),
 			children: (
 				<div>
-					<Fade top>
-						{LeatherProducts.map((leather) => (
-							<Link
-								onClick={() =>
-									handleLinkClickAndToggleDrawer(
-										leather.pathname
-									)
-								}
-								href={leather?.pathname}
-								key={leather?.name}
-							>
-								<h2 className='text-lg pl-2'>{leather.name}</h2>
-							</Link>
-						))}
-					</Fade>
+					{LeatherProducts.map((leather) => (
+						<Link
+							onClick={() =>
+								handleLinkClickAndToggleDrawer(leather.pathname)
+							}
+							href={leather?.pathname}
+							key={leather?.name}
+						>
+							<h2 className='text-lg pl-2'>{leather.name}</h2>
+						</Link>
+					))}
 				</div>
 			),
 		},
@@ -164,21 +153,17 @@ const NavigationContent = ({ toggleDrawer }) => {
 			label: <h1 className='text-xl font-semibold'>Jewelry</h1>,
 			children: (
 				<div>
-					<Fade top>
-						{jewelryProducts.map((jewelry) => (
-							<Link
-								onClick={() =>
-									handleLinkClickAndToggleDrawer(
-										jewelry.pathname
-									)
-								}
-								href={jewelry?.pathname}
-								key={jewelry?.name}
-							>
-								<h2 className='text-lg pl-2'>{jewelry.name}</h2>
-							</Link>
-						))}
-					</Fade>
+					{jewelryProducts.map((jewelry) => (
+						<Link
+							onClick={() =>
+								handleLinkClickAndToggleDrawer(jewelry.pathname)
+							}
+							href={jewelry?.pathname}
+							key={jewelry?.name}
+						>
+							<h2 className='text-lg pl-2'>{jewelry.name}</h2>
+						</Link>
+					))}
 				</div>
 			),
 		},
@@ -188,15 +173,13 @@ const NavigationContent = ({ toggleDrawer }) => {
 			className='w-full lg:w-full '
 			style={{ maxHeight: '70vh', overflowY: 'auto' }}
 		>
-			<Fade top>
-				<Collapse
-					defaultActiveKey={['1']}
-					ghost
-					items={items}
-					accordion
-					expandIconPosition='end'
-				/>
-			</Fade>
+			<Collapse
+				defaultActiveKey={['1']}
+				ghost
+				items={items}
+				accordion
+				expandIconPosition='end'
+			/>
 		</div>
 	);
 };

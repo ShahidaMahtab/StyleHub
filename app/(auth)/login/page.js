@@ -1,16 +1,11 @@
 'use client';
-// import { useUser } from "@/components/Context/UserContext";
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSession } from 'next-auth/react';
 export default function page() {
-	const router = useRouter();
-	// const { updateUser } = useUser();
 	const {
 		register,
 		watch,
@@ -19,13 +14,7 @@ export default function page() {
 		formState: { errors },
 	} = useForm();
 
-	// useEffect(() => {
-	//   if (localStorage.getItem("token")) {
-	//     router.push("/");
-	//   }
-	// }, []);
-	const { data: session } = useSession();
-	console.log(session?.user);
+	/* 	const { data: session } = useSession(); */
 
 	// submit form
 	const onSubmit = async (data) => {
@@ -35,6 +24,7 @@ export default function page() {
 			redirect: true,
 			callbackUrl: '/',
 		});
+
 		reset();
 		toast.success('You are successfully signed in', {
 			position: 'bottom-left',
@@ -46,45 +36,6 @@ export default function page() {
 			progress: undefined,
 			theme: 'light',
 		});
-		console.log(result);
-		// let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
-		//   method: "POST",
-		//   headers: { "content-type": "application/json" },
-		//   body: JSON.stringify(data),
-		// });
-		// let response = await res.json();
-		// reset();
-		// if (response.success) {
-		//   console.log(response);
-		//   // localStorage.setItem("token", response.token);
-		//   // localStorage.setItem("email", response.tokenUser);
-		//   // localStorage.setItem("name", response.name);
-		//   toast.success("You are successfully logged in", {
-		//     position: "bottom-left",
-		//     autoClose: 5000,
-		//     hideProgressBar: false,
-		//     closeOnClick: true,
-		//     pauseOnHover: true,
-		//     draggable: true,
-		//     progress: undefined,
-		//     theme: "light",
-		//   });
-		//   // updateUser(); // Trigger state update
-		//   setTimeout(() => {
-		//     router.push("/");
-		//   }, 1000);
-		// } else {
-		//   toast.error(response.error, {
-		//     position: "bottom-left",
-		//     autoClose: 5000,
-		//     hideProgressBar: false,
-		//     closeOnClick: true,
-		//     pauseOnHover: true,
-		//     draggable: true,
-		//     progress: undefined,
-		//     theme: "light",
-		//   });
-		// }
 	};
 
 	return (
