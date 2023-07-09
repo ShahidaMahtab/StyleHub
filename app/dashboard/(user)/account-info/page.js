@@ -8,8 +8,6 @@ import { useSession, signOut } from 'next-auth/react';
 export default function page() {
 	const {
 		register,
-		watch,
-		reset,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();

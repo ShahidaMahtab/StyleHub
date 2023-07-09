@@ -32,7 +32,6 @@ export async function GET(request, { params }) {
 			perPage,
 		});
 	} catch (err) {
-		console.log(err);
 		return new NextResponse(`No product with category : ${styleguide}`);
 	}
 }

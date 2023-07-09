@@ -31,7 +31,6 @@ const page = async ({ params }) => {
 
 		fetchData();
 	}, [currentPage]);
-	console.log(data);
 	// next button
 	const handleNextPage = () => {
 		setCurrentPage((prevPage) => prevPage + 1);
