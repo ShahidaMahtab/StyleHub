@@ -54,13 +54,13 @@ const CategoryProduct = () => {
 
 	return (
 		<section className=''>
-			<div className=''>
+			<div className='overflow-hidden'>
 				<Slider {...settings}>
 					{products.map((product) => (
 						<Link
 							href={`/collections/${product.category}`}
 							key={product._id}
-							className='pb-10 '
+							className='pb-10 pl-2  '
 							onClick={() =>
 								handleLinkClick(
 									`/collections/${product.category}`
@@ -68,7 +68,7 @@ const CategoryProduct = () => {
 							}
 						>
 							<div className='space-y-4 pr-[1.5px]'>
-								<div className=''>
+								<div className='border rounded-xl'>
 									<Image
 										src={product.image}
 										alt='product-image'
