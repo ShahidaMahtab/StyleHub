@@ -147,13 +147,15 @@ const Navbar = () => {
 	};
 
 	const renderCartDrawer = () => {
-		useEffect(() => {
-			fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`)
-				.then((res) => res.json())
-				.then((data) => {
-					setCartItems(data.cartItems);
-				});
-		}, [cartItems, email]);
+		if (email) {
+			useEffect(() => {
+				fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`)
+					.then((res) => res.json())
+					.then((data) => {
+						setCartItems(data.cartItems);
+					});
+			}, [cartItems, email]);
+		}
 		if (cartOpen) {
 			return (
 				<AnimatePresence>
