@@ -20,7 +20,7 @@ const Navbar = () => {
 
 	const { data: session } = useSession();
 	const email = session?.user?.tokenUser;
-	console.log(session?.user);
+
 	useEffect(() => {
 		const handleResize = () => {
 			setOpen(false);
