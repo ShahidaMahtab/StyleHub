@@ -2,12 +2,8 @@
 import Navbar from '@/components/Navbar/Navbar';
 import './globals.css';
 import Footer from '@/components/Footer/Footer';
-import Loading from './loading';
-// import { motion, useScroll } from "framer-motion";
 /* import { Inter } from 'next/font/google'; */
 import { usePathname } from 'next/navigation';
-
-import { useEffect, useState } from 'react';
 import { LoadingProvider } from '@/components/Context/LoadingContext';
 import Providers from '@/components/Providers';
 

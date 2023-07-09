@@ -8,7 +8,7 @@ import Link from 'next/link';
 import NavigationContent from './NavigationContent';
 import { BiLogOut } from 'react-icons/bi';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import { MdOutlineAccountCircle } from 'react-icons/md';
 import { useSession, signOut } from 'next-auth/react';
 const Navbar = () => {
 	const [cartItems, setCartItems] = useState([]);
