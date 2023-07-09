@@ -26,11 +26,6 @@ const Banner = () => {
 		setIsMuted(!isMuted);
 	};
 
-	const navbarHeight = 4; // Height of the navbar in pixels
-
-	// Calculate the video height by subtracting the navbar height
-	const videoHeight = `calc(100vh - ${navbarHeight}px)`;
-
 	return (
 		<div className='relative'>
 			<video
@@ -38,8 +33,7 @@ const Banner = () => {
 				autoPlay
 				loop
 				muted
-				className='w-full object-cover'
-				style={{ height: videoHeight }}
+				className='w-full object-cover h-[100vh]'
 			>
 				<source src='/videos/banner.mp4' type='video/mp4' />
 				{/* Your browser does not support the video tag. */}
