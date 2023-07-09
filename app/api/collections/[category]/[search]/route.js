@@ -3,10 +3,10 @@ import Products from '@/models/Products';
 import { NextResponse } from 'next/server';
 
 export async function GET(request, { params }) {
-	console.log(params);
-	const { search } = params;
-	const category = search[0];
-	const subcategory = search[1];
+	console.log(params, 'this is search params');
+
+	const category = params.category;
+	const subcategory = params.search;
 	try {
 		await connect();
 		const filterProducts = await Products.find({ category, subcategory });
