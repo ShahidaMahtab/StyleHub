@@ -2,7 +2,6 @@
 
 import { Collapse } from 'antd';
 import Link from 'next/link';
-import { useLoadingContext } from '../Context/LoadingContext';
 
 const manProducts = [
 	{ name: 'All Ready-to-Wear', pathname: '/collections/men/ready-to-wear' },
@@ -73,13 +72,7 @@ const jewelryProducts = [
 ];
 
 const NavigationContent = ({ toggleDrawer }) => {
-	const { handleLinkClick } = useLoadingContext();
-	const handleLinkClickAndToggleDrawer = async (link) => {
-		try {
-			await handleLinkClick(link); // Call the handleLinkClick function with the link as an argument and wait for it to finish
-		} catch (error) {
-			console.error('Error occurred during loading:', error);
-		}
+	const handleLinkClickAndToggleDrawer = () => {
 		toggleDrawer(); // Call the toggleDrawer function to close the drawer
 	};
 	const items = [
@@ -90,9 +83,7 @@ const NavigationContent = ({ toggleDrawer }) => {
 				<div>
 					{manProducts?.map((man) => (
 						<Link
-							onClick={() =>
-								handleLinkClickAndToggleDrawer(man.pathname)
-							}
+							onClick={handleLinkClickAndToggleDrawer}
 							href={man?.pathname}
 							key={man?.name}
 						>
@@ -109,9 +100,7 @@ const NavigationContent = ({ toggleDrawer }) => {
 				<div>
 					{womenProducts?.map((women) => (
 						<Link
-							onClick={() =>
-								handleLinkClickAndToggleDrawer(women.pathname)
-							}
+							onClick={handleLinkClickAndToggleDrawer}
 							href={women?.pathname}
 							key={women?.name}
 						>
@@ -132,9 +121,7 @@ const NavigationContent = ({ toggleDrawer }) => {
 				<div>
 					{LeatherProducts.map((leather) => (
 						<Link
-							onClick={() =>
-								handleLinkClickAndToggleDrawer(leather.pathname)
-							}
+							onClick={handleLinkClickAndToggleDrawer}
 							href={leather?.pathname}
 							key={leather?.name}
 						>
@@ -151,9 +138,7 @@ const NavigationContent = ({ toggleDrawer }) => {
 				<div>
 					{jewelryProducts.map((jewelry) => (
 						<Link
-							onClick={() =>
-								handleLinkClickAndToggleDrawer(jewelry.pathname)
-							}
+							onClick={handleLinkClickAndToggleDrawer}
 							href={jewelry?.pathname}
 							key={jewelry?.name}
 						>

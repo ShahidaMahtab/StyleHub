@@ -8,10 +8,8 @@ import { FiChevronsRight } from 'react-icons/fi';
 import products from '@/utils/categoryProducts';
 import './CategoryProduct.css';
 import { motion } from 'framer-motion';
-import { useLoadingContext } from '../Context/LoadingContext';
 
 const CategoryProduct = () => {
-	const { handleLinkClick } = useLoadingContext();
 	const settings = {
 		dots: true,
 		infinite: true,
@@ -59,11 +57,6 @@ const CategoryProduct = () => {
 					{products.map((product) => (
 						<Link
 							href={`/collections/${product.category}`}
-							onClick={() =>
-								handleLinkClick(
-									`/collections/${product.category}`
-								)
-							}
 							key={product._id}
 							className='pb-10 pl-2'
 						>
