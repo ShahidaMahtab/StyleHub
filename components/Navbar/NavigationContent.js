@@ -1,8 +1,9 @@
 'use client';
-import React, { useState } from 'react';
+
 import { Collapse } from 'antd';
 import Link from 'next/link';
 import { useLoadingContext } from '../Context/LoadingContext';
+
 const manProducts = [
 	{ name: 'All Ready-to-Wear', pathname: '/collections/men/ready-to-wear' },
 	{
@@ -73,19 +74,14 @@ const jewelryProducts = [
 
 const NavigationContent = ({ toggleDrawer }) => {
 	const { handleLinkClick } = useLoadingContext();
-	const [loading, setLoading] = useState(false); // Add a loading state
-
 	const handleLinkClickAndToggleDrawer = async (link) => {
-		setLoading(true); // Set loading state to true before starting the loading process
 		try {
 			await handleLinkClick(link); // Call the handleLinkClick function with the link as an argument and wait for it to finish
 		} catch (error) {
 			console.error('Error occurred during loading:', error);
 		}
-		setLoading(false); // Set loading state to false after the loading process is complete
 		toggleDrawer(); // Call the toggleDrawer function to close the drawer
 	};
-
 	const items = [
 		{
 			key: '1',

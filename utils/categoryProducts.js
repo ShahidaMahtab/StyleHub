@@ -63,7 +63,7 @@ const categoryProducts = [
 		title: 'LV x YK Infinity Dots Knitted Dress',
 		price: '10,100.00',
 		category: 'women',
-		image: 'https://i.ibb.co/DpSMXRr/louis-vuitton-lv-x-yk-infinity-dots-knitted-dress-FOKD16-YC1900-PM2-Front-view.webp',
+		image: 'https://i.ibb.co/LpFNSjJ/louis-vuitton-square-neck-zip-off-jumpsuit-FPPX36-RD7900-PM2-Front-view.webp',
 		subcategory: 'dresses',
 		color: ['red', 'black', 'blue'],
 		size: ['s', 'm', 'l', 'xl'],

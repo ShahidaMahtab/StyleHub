@@ -10,7 +10,7 @@ export async function POST(request) {
 		await connect();
 		const body = await request.json();
 		let user = await User.findOne({ email: body.email });
-		console.log(user);
+		/* console.log(user, 'from terminal'); */
 		if (user) {
 			const bytes = CryptoJS.AES.decrypt(user.password, 'secret123');
 			let decryptedPass = bytes.toString(CryptoJS.enc.Utf8);

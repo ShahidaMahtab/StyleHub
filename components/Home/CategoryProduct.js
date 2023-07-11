@@ -59,13 +59,13 @@ const CategoryProduct = () => {
 					{products.map((product) => (
 						<Link
 							href={`/collections/${product.category}`}
-							key={product._id}
-							className='pb-10 pl-2  '
 							onClick={() =>
 								handleLinkClick(
 									`/collections/${product.category}`
 								)
 							}
+							key={product._id}
+							className='pb-10 pl-2'
 						>
 							<div className='space-y-4 pr-[1.5px]'>
 								<div className='border rounded-xl'>

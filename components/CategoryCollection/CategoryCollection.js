@@ -2,8 +2,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+
 const CategoryCollection = ({ product }) => {
 	const { title, _id, image, price, color, size, category } = product || {};
+
 	return (
 		<div className='mt-20'>
 			<motion.div whileHover={{ scale: 0.9 }} whileTap={{ scale: 0.5 }}>

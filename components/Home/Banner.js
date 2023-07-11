@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useRef } from 'react';
 import { FaPlay, FaPause, FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 

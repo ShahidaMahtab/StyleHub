@@ -3,8 +3,6 @@ import Products from '@/models/Products';
 import { NextResponse } from 'next/server';
 
 export async function GET(request, { params }) {
-	console.log(params, 'this is search params');
-
 	const category = params.category;
 	const subcategory = params.search;
 	try {

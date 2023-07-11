@@ -152,10 +152,11 @@ const Navbar = () => {
 				fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`)
 					.then((res) => res.json())
 					.then((data) => {
+						/* console.log(data.cartItems); */
 						setCartItems(data.cartItems);
 					});
 			}
-		}, []);
+		}, [email, cartItems]);
 
 		if (cartOpen) {
 			return (
@@ -183,7 +184,7 @@ const Navbar = () => {
 									</h2>
 									{cartItems?.map((item) => {
 										return (
-											<div className='' key={item._id}>
+											<div className='' key={item?._id}>
 												<div className='mt-8'>
 													<div className='flow-root'>
 														<ul
@@ -194,10 +195,10 @@ const Navbar = () => {
 																<div className='flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md'>
 																	<img
 																		src={
-																			item.image
+																			item?.image
 																		}
 																		alt={
-																			item.title
+																			item?.title
 																		}
 																		className='object-cover object-center w-full h-full'
 																	/>
@@ -209,20 +210,20 @@ const Navbar = () => {
 																			<h3>
 																				<a href='#'>
 																					{
-																						item.title
+																						item?.title
 																					}
 																				</a>
 																			</h3>
 																			<p className='ml-4'>
 																				$
 																				{
-																					item.price
+																					item?.price
 																				}
 																			</p>
 																		</div>
 																		<p className='mt-1 text-sm text-gray-500'>
 																			{
-																				item.category
+																				item?.category
 																			}
 																		</p>
 																	</div>
@@ -239,7 +240,7 @@ const Navbar = () => {
 																				className='font-medium text-indigo-600 hover:text-indigo-500'
 																			>
 																				{
-																					item.quantity
+																					item?.quantity
 																				}
 																			</button>
 																		</div>

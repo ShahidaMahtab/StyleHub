@@ -1,4 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
+import { useRouter } from 'next/navigation'; // Import useRouter from Next.js
+import Loading from '@/app/loading';
 
 const LoadingContext = createContext();
 
@@ -8,6 +10,7 @@ export const useLoadingContext = () => {
 
 export const LoadingProvider = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(false);
+	const router = useRouter(); // Initialize useRouter
 	const [targetLink, setTargetLink] = useState('');
 
 	const handleLinkClick = (link) => {
@@ -25,21 +28,26 @@ export const LoadingProvider = ({ children }) => {
 
 		// Measure the time taken for loading the target link
 		const { performance } = window;
-		const navigationStart = performance.timing.navigationStart;
+		const navigationStart =
+			performance.timeOrigin || performance.timing.navigationStart;
 
 		setTimeout(() => {
 			setIsLoading(false);
-			// Navigate to the target link
-			window.location.href = link;
+			// Navigate to the target link using Next.js router
+			router.push(link);
 
 			// Restore the original page title after loading is completed
 			document.title = originalTitle;
 		}, performance.now() - navigationStart); // Calculate the time based on the current time minus the navigation start time
 	};
+
 	const value = {
-		isLoading,
 		handleLinkClick,
 	};
+
+	if (isLoading) {
+		return <Loading />;
+	}
 
 	return (
 		<LoadingContext.Provider value={value}>

@@ -32,6 +32,6 @@ export async function GET(request, { params }) {
 			perPage,
 		});
 	} catch (err) {
-		return new NextResponse(`No product with category : ${styleguide}`);
+		return new NextResponse(`No product with type : ${styleguide}`);
 	}
 }
