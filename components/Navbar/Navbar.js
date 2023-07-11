@@ -10,16 +10,16 @@ import { BiLogOut } from 'react-icons/bi';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { useSession, signOut } from 'next-auth/react';
+import useCartItems from '../hooks/useCartItems';
 const Navbar = () => {
-	const [cartItems, setCartItems] = useState([]);
+	const { data: session } = useSession();
+
+	const { cartItems } = useCartItems();
 	const [open, setOpen] = useState(false);
 
 	const [cartOpen, setCartOpen] = useState(false);
 	const [activeOption, setActiveOption] = useState(null);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
-
-	const { data: session } = useSession();
-	const email = session?.user?.tokenUser;
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -147,17 +147,6 @@ const Navbar = () => {
 	};
 
 	const renderCartDrawer = () => {
-		useEffect(() => {
-			if (email) {
-				fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/${email}`)
-					.then((res) => res.json())
-					.then((data) => {
-						/* console.log(data.cartItems); */
-						setCartItems(data.cartItems);
-					});
-			}
-		}, [email, cartItems]);
-
 		if (cartOpen) {
 			return (
 				<AnimatePresence>

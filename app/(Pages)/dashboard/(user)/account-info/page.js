@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
+import Link from 'next/link';
 export default function page() {
 	const {
 		register,
@@ -56,7 +57,7 @@ export default function page() {
 	};
 
 	return (
-		<div className='py-6 mt-32 bg-white sm:py-8 lg:py-12'>
+		<div className=''>
 			<ToastContainer
 				position='bottom-left'
 				autoClose={5000}
@@ -69,10 +70,30 @@ export default function page() {
 				pauseOnHover
 				theme='light'
 			/>
-			<div className='px-4 mx-auto max-w-screen-2xl md:px-8'>
+			<div className='flex flex-col justify-center items-center'>
+				<h1 className='text-6xl mt-4 font-bold text-black'>
+					Account Info
+				</h1>
+				{/* Breadcrumb */}
+				<div className='text-md text text-slate-600 py-4'>
+					<Link href='/'>
+						<span className=''>Home</span>
+					</Link>
+					<span className='mx-2 '>{'>>'}</span>
+					<Link href='/dashboard'>
+						<span>My Account</span>
+					</Link>
+					<span className='mx-2 '>{'>>'}</span>
+					<Link href='/dashboard/account-info'>
+						<span>Account Info</span>
+					</Link>
+				</div>
+			</div>
+
+			<div className='container mx-auto w-2/3 mt-4'>
 				<form
 					onSubmit={handleSubmit(onSubmit)}
-					className='grid max-w-screen-md gap-4 mx-auto sm:grid-cols-2'
+					className='grid  gap-4  sm:grid-cols-2'
 				>
 					<div>
 						<label
