@@ -1,6 +1,6 @@
-# StyleHub(e-commerce)
+# Fast sell(e-commerce)
 
-MERN stack Project [StyleHub](https://fastsell-nu.vercel.app/).
+MERN stack Project [Fast sell](https://fastsell-nu.vercel.app/).
 
 ## Website Details
 * Users can select products and add to cart
