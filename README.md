@@ -1,12 +1,13 @@
-# Fast sell(e-commerce)
+# Style Hub (e-commerce)
 
-MERN stack Project [Fast sell](https://fastsell-nu.vercel.app/).
+Next JS Project [Style Hub](https://fastsell-nu.vercel.app/).
 
 ## Website Details
-* Users can select products and add to cart
-* After confirming their orders can check their order
-* Admin and Client separate dashboard.
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+-   Users can select products and add to cart
+-   After confirming their orders can check their order
+-   Admin and Client separate dashboard.
+    This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
@@ -30,8 +31,8 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
