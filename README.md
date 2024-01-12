@@ -1,3 +1,11 @@
+# StyleHub(e-commerce)
+
+MERN stack Project [StyleHub](https://fastsell-nu.vercel.app/).
+
+## Website Details
+* Users can select products and add to cart
+* After confirming their orders can check their order
+* Admin and Client separate dashboard.
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
