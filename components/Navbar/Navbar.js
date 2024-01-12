@@ -393,9 +393,7 @@ const Navbar = () => {
 						Babies
 					</div>
 				</div>
-				<div className='flex items-center justify-center mx-auto text-lg font-bold tracking-widest lg:col-span-3'>
-					KWS
-				</div>
+				<div className='flex items-center justify-center mx-auto text-lg font-bold tracking-widest lg:col-span-3'></div>
 				<div className='hidden pr-4 space-x-4 lg:flex lg:items-center lg:justify-end lg:col-span-3'>
 					<div>English</div>
 					<div className='z-10'>
