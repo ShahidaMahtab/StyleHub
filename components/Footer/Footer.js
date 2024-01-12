@@ -10,8 +10,8 @@ const Footer = () => {
 			<div className='flex flex-col lg:space-y-6 '>
 				{/* for logo */}
 				<div className='flex flex-col space-y-4'>
-					<div className='mx-auto pt-4'>
-						<Image src={Logo} width={120} height={120} alt='logo' />
+					<div className='mx-auto py-8'>
+						<Image src={Logo} width={60} height={60} alt='logo' />
 					</div>
 					<div className='grid grid-rows-3 lg:flex  items-center justify-center lg:space-x-4 text-center tracking-wider'>
 						<div>
@@ -86,7 +86,7 @@ const Footer = () => {
 							</h4>
 							<p className='text-base'>49 CHILTERN STREET</p>
 							<p className='text-sm'>
-								Bella Freud
+								Style Hub
 								<br />
 								49 Chiltern Street
 							</p>
@@ -133,7 +133,7 @@ const Footer = () => {
 				{/* links of site */}
 				<div className='lg:flex items-center justify-between lg:container lg:mx-auto text-sm space-y-4 lg:space-y-0  '>
 					<div className='text-center lg:text-left pt-4 lg:pt-0'>
-						© 2022 Bella Freud
+						© 2024 styleHub
 					</div>
 					<ul className='flex space-x-4 pl-4 lg:pl-0'>
 						<li>Careers</li>

@@ -11,6 +11,7 @@ import {
 	MdOutlineDashboard,
 	MdOutlineListAlt,
 	MdOutlineLockPerson,
+	MdOutlineOtherHouses,
 } from 'react-icons/md';
 import { AiOutlineHeart, AiOutlineUpload } from 'react-icons/ai';
 
@@ -38,6 +39,11 @@ const Sidebar = () => {
 			name: ' Change Password',
 			pathname: '/dashboard/change-password',
 			icon: <MdOutlineLockPerson size={25} />,
+		},
+		{
+			name: 'Home',
+			pathname: '/',
+			icon: <MdOutlineOtherHouses size={25} />,
 		},
 		// {
 		//   name: "Logout",
